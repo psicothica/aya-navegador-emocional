@@ -1,0 +1,6 @@
+{
+  "name": "Bússola 4ª Onda: Navegador Emocional & Ativação",
+  "description": "Ecossistema Psicothica: aplicativo de navegação emocional, presença, regulação fisiológica e acompanhamento diário entre sessões de psicoterapia.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

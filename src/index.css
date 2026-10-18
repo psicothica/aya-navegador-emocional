@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: #0f142a;
+    color: #e1eefc;
+  }
+}
+
+/* Custom font utilities for Psicothica hierarchy */
+.font-display {
+  font-family: 'Syne', sans-serif;
+  letter-spacing: -0.03em;
+}
+
+.font-personality {
+  font-family: 'Shrikhand', cursive;
+  letter-spacing: 0.01em;
+}
+
+.font-analog {
+  font-family: 'Amatic SC', cursive;
+  letter-spacing: 0.05em;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.font-signature {
+  font-family: 'Caveat', cursive;
+  letter-spacing: 0.02em;
+}
+
+.font-tech {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Glassmorphism surfaces */
+.glass-panel {
+  background: rgba(15, 20, 42, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(130, 229, 255, 0.14);
+}
+
+.glass-panel-accent {
+  background: linear-gradient(135deg, rgba(66, 39, 116, 0.35) 0%, rgba(15, 20, 42, 0.8) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(206, 87, 223, 0.25);
+}
+
+/* Analog paper tape / washi tape accent */
+.washi-tape {
+  position: relative;
+  background: rgba(225, 238, 252, 0.95);
+  color: #0f142a;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  transform: rotate(-1.5deg);
+}
+
+.washi-tape-magenta {
+  background: #ce57df;
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(206, 87, 223, 0.35);
+  transform: rotate(1deg);
+}
+
+/* Grid overlay background to evoke the analog/digital tension */
+.bg-grid-cyber {
+  background-image: 
+    linear-gradient(to right, rgba(130, 229, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(130, 229, 255, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Glowing neon accents */
+.glow-cyan {
+  text-shadow: 0 0 12px rgba(2, 187, 255, 0.6);
+}
+
+.glow-magenta {
+  text-shadow: 0 0 12px rgba(206, 87, 223, 0.6);
+}
+
+/* Custom scrollbar matching dark/neon palette */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #0f142a;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(206, 87, 223, 0.35);
+  border-radius: 9999px;
+  border: 1px solid rgba(2, 187, 255, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(206, 87, 223, 0.65);
+}
+
+/* Slow soothing breathing pulse (matching gentle respiratory cycle ~7s) */
+@keyframes breathingSlow {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(2, 187, 255, 0.25);
+    border-color: rgba(2, 187, 255, 0.4);
+  }
+  50% {
+    transform: scale(1.025);
+    box-shadow: 0 0 25px rgba(130, 229, 255, 0.5), 0 0 35px rgba(206, 87, 223, 0.25);
+    border-color: rgba(130, 229, 255, 0.75);
+  }
+}
+
+.animate-pulse-slow {
+  animation: breathingSlow 7s ease-in-out infinite;
+  transition: all 0.5s ease-in-out;
+}
