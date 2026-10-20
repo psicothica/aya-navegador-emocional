@@ -2,7 +2,7 @@
 
 @layer base {
   body {
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-family: var(--psi-font-text);
     background-color: #0f142a;
     color: #e1eefc;
   }
@@ -10,29 +10,31 @@
 
 /* Custom font utilities for Psicothica hierarchy */
 .font-display {
-  font-family: 'Syne', sans-serif;
-  letter-spacing: -0.03em;
+  font-family: var(--psi-font-display);
+  font-weight: 900;
+  letter-spacing: 0;
 }
 
 .font-personality {
-  font-family: 'Shrikhand', cursive;
+  font-family: var(--psi-font-accent);
   letter-spacing: 0.01em;
 }
 
 .font-analog {
-  font-family: 'Amatic SC', cursive;
+  font-family: var(--psi-font-hand);
   letter-spacing: 0.05em;
   font-size: 1.25rem;
   line-height: 1;
 }
 
 .font-signature {
-  font-family: 'Caveat', cursive;
-  letter-spacing: 0.02em;
+  font-family: var(--psi-font-signature);
+  font-size: 1.3em;
+  line-height: 1.1;
 }
 
 .font-tech {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--psi-font-mono);
 }
 
 /* Glassmorphism surfaces */
@@ -60,7 +62,7 @@
 }
 
 .washi-tape-magenta {
-  background: #ce57df;
+  background: #b104dc;
   color: #ffffff;
   box-shadow: 0 0 12px rgba(206, 87, 223, 0.35);
   transform: rotate(1deg);
@@ -117,4 +119,17 @@
 .animate-pulse-slow {
   animation: breathingSlow 7s ease-in-out infinite;
   transition: all 0.5s ease-in-out;
+}
+
+/* Movimento reduzido: sem animações nem transições próprias do app (respiração, pulsos, hovers). */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0s !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0s !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-pulse-slow { animation: none !important; transform: none !important; }
 }

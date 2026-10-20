@@ -88,7 +88,7 @@ export const WordRepetitionTool: React.FC<WRTProps> = ({ initialWord = 'Fracasso
     <div className="glass-panel rounded-2xl p-6 border border-[#ce57df]/30 shadow-[0_12px_40px_rgba(0,0,0,0.4)]">
       <div className="pb-4 border-b border-[#ce57df]/20 flex items-start justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-xs font-tech text-[#ce57df] mb-1">
+          <div className="flex items-center gap-2 text-xs font-tech text-[#ec9eff] mb-1">
             <span>TÉCNICA WRT (WORD REPETITION) // 4ª ONDA</span>
             <span aria-hidden="true" className="text-slate-600">/</span>
             <span>DESFUSÃO EM ALTA VELOCIDADE</span>
@@ -102,7 +102,7 @@ export const WordRepetitionTool: React.FC<WRTProps> = ({ initialWord = 'Fracasso
           type="button"
           onClick={() => setSoundEnabled(!soundEnabled)}
           className={`p-2 rounded-xl text-xs font-tech transition-all flex items-center gap-1.5 border border-[#82e5ff]/20 ${
-            soundEnabled ? 'text-[#02bbff] bg-[#130169]/80 border-[#02bbff]/40' : 'text-slate-400 hover:text-white'
+            soundEnabled ? 'text-[#02bbff] bg-[#130169]/80 border-[#02bbff]/40' : 'text-[#b4c0d9] hover:text-white'
           }`}
           title="Metrônomo sonoro"
         >
@@ -112,7 +112,7 @@ export const WordRepetitionTool: React.FC<WRTProps> = ({ initialWord = 'Fracasso
       </div>
 
       {/* Explanatory callout */}
-      <div className="my-4 p-3.5 bg-[#130169]/40 rounded-xl border border-[#02bbff]/20 text-xs text-[#e1eefc]/80 flex items-start gap-2.5">
+      <div className="my-4 p-3.5 bg-[#130169]/40 rounded-xl border border-[#02bbff]/20 text-xs text-[#b4c0d9] flex items-start gap-2.5">
         <Info className="w-4 h-4 text-[#02bbff] shrink-0 mt-0.5" />
         <p className="leading-relaxed">
           <strong className="text-white font-tech uppercase">Como essa porcaria funciona:</strong> Quando você repete um insulto doloroso bem rápido em voz alta por 35 segundos, o cérebro satura a rede semântica. A palavra perde o verniz do drama e volta a ser o que de fato sempre foi: um barulho estranho na sua laringe.
@@ -148,7 +148,7 @@ export const WordRepetitionTool: React.FC<WRTProps> = ({ initialWord = 'Fracasso
               type="button"
               onClick={handleStart}
               disabled={!word.trim()}
-              className="px-5 py-2.5 bg-gradient-to-r from-[#ce57df] to-[#b104dc] hover:from-[#ec9eff] text-white text-xs font-tech font-bold rounded-xl transition-all flex items-center gap-1.5 whitespace-nowrap border border-[#ce57df] shadow-[0_0_15px_rgba(206,87,223,0.3)]"
+              className="px-5 py-2.5 bg-gradient-to-r from-[#b104dc] to-[#b104dc] hover:brightness-110 text-white text-xs font-tech font-bold rounded-xl transition-all flex items-center gap-1.5 whitespace-nowrap border border-[#ce57df] shadow-[0_0_15px_rgba(206,87,223,0.3)]"
             >
               <Play className="w-4 h-4" />
               <span>Iniciar 35s</span>
@@ -158,7 +158,7 @@ export const WordRepetitionTool: React.FC<WRTProps> = ({ initialWord = 'Fracasso
 
         {/* Suggestion tags */}
         <div className="flex flex-wrap items-center gap-1.5 pt-1">
-          <span className="text-xs font-tech text-[#e1eefc]/50 mr-1">Gatilhos comuns:</span>
+          <span className="text-xs font-tech text-[#b4c0d9] mr-1">Gatilhos comuns:</span>
           {predefinedWords.map((item) => (
             <button
               key={item}
@@ -168,7 +168,7 @@ export const WordRepetitionTool: React.FC<WRTProps> = ({ initialWord = 'Fracasso
               className={`px-2.5 py-1 text-xs font-mono rounded-lg border transition-all ${
                 word.toLowerCase() === item.toLowerCase()
                   ? 'bg-[#130169] border-[#02bbff] text-[#82e5ff] font-bold shadow-[0_0_8px_rgba(2,187,255,0.3)]'
-                  : 'bg-[#0f142a] border-[#82e5ff]/20 text-[#e1eefc]/70 hover:bg-[#130169]/40'
+                  : 'bg-[#0f142a] border-[#82e5ff]/20 text-[#b4c0d9] hover:bg-[#130169]/40'
               }`}
             >
               {item}
@@ -181,7 +181,7 @@ export const WordRepetitionTool: React.FC<WRTProps> = ({ initialWord = 'Fracasso
       <div className="mt-6 p-6 rounded-2xl bg-[#0f142a]/90 border border-[#ce57df]/30 flex flex-col items-center justify-center text-center min-h-[190px]">
         {isRunning ? (
           <div className="flex flex-col items-center">
-            <span className="font-tech text-xs uppercase tracking-wider text-[#ce57df] font-bold mb-2">
+            <span className="font-tech text-xs uppercase tracking-wider text-[#ec9eff] font-bold mb-2">
               Fale em voz alta e rápida sem parar:
             </span>
             <div
@@ -191,7 +191,7 @@ export const WordRepetitionTool: React.FC<WRTProps> = ({ initialWord = 'Fracasso
             >
               &ldquo;{word}&rdquo;
             </div>
-            <div className="mt-4 flex items-center gap-4 text-xs font-tech text-[#e1eefc]/70">
+            <div className="mt-4 flex items-center gap-4 text-xs font-tech text-[#b4c0d9]">
               <div>
                 <span>Cronômetro: </span>
                 <strong className="text-white text-base font-bold tabular-nums glow-magenta">
@@ -206,7 +206,7 @@ export const WordRepetitionTool: React.FC<WRTProps> = ({ initialWord = 'Fracasso
                 </strong>
               </div>
             </div>
-            <p className="text-xs text-[#e1eefc]/60 mt-2 max-w-sm font-signature text-sm">
+            <p className="text-xs text-[#b4c0d9] mt-2 max-w-sm font-signature text-sm">
               Note como a palavra começa a parecer um trava-língua alienígena e perde o sentido trágico.
             </p>
           </div>
@@ -216,7 +216,7 @@ export const WordRepetitionTool: React.FC<WRTProps> = ({ initialWord = 'Fracasso
             <h4 className="font-display text-base font-bold text-white uppercase">
               Ciclo Completo!
             </h4>
-            <p className="text-xs text-[#e1eefc]/80 max-w-md leading-relaxed">
+            <p className="text-xs text-[#b4c0d9] max-w-md leading-relaxed">
               O que sobrou da palavra &ldquo;{word}&rdquo;? Ela ainda é uma sentença de prisão eterna ou virou só um som engraçado que a sua boca consegue emitir?
             </p>
             <button
@@ -228,7 +228,7 @@ export const WordRepetitionTool: React.FC<WRTProps> = ({ initialWord = 'Fracasso
             </button>
           </div>
         ) : (
-          <div className="text-[#e1eefc]/60 text-xs font-tech max-w-sm">
+          <div className="text-[#b4c0d9] text-xs font-tech max-w-sm">
             Clique em <strong>Iniciar 35s</strong> para desarmar o veneno literal da palavra.
           </div>
         )}

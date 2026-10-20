@@ -1,6 +1,5 @@
 import React from 'react';
 import { FileText, Shield, Sparkles, Terminal } from 'lucide-react';
-import { PsicothicaLogo } from './PsicothicaLogo';
 
 interface HeaderProps {
   currentTab: string;
@@ -26,15 +25,6 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header className="sticky top-0 z-40 bg-[#0f142a]/85 backdrop-blur-md border-b border-[#82e5ff]/15">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4 h-18">
-        {/* Zone 1: Single element brand mark */}
-        <button
-          type="button"
-          onClick={() => onSelectTab('navegador')}
-          className="text-left shrink-0 hover:opacity-95 transition-opacity"
-        >
-          <PsicothicaLogo size="md" showWordmark={true} />
-        </button>
-
         {/* Zone 2: 4-5 concise single-line nav links */}
         <nav className="hidden md:flex items-center gap-7 text-xs font-semibold tracking-wide">
           {navItems.map((item) => {
@@ -47,7 +37,7 @@ export const Header: React.FC<HeaderProps> = ({
                 className={`transition-all duration-150 whitespace-nowrap shrink-0 pb-1 border-b-2 font-medium ${
                   isActive
                     ? 'text-[#02bbff] border-[#02bbff] font-bold glow-cyan'
-                    : 'text-[#e1eefc]/70 border-transparent hover:text-[#82e5ff] hover:border-[#82e5ff]/40'
+                    : 'text-[#b4c0d9] border-transparent hover:text-[#82e5ff] hover:border-[#82e5ff]/40'
                 }`}
               >
                 {item.label}
@@ -72,7 +62,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             type="button"
             onClick={onOpenReportModal}
-            className="px-3.5 sm:px-4 py-2 text-xs font-bold text-white bg-gradient-to-r from-[#b104dc] to-[#130169] rounded-lg hover:from-[#ce57df] hover:to-[#422774] border border-[#ce57df]/50 shadow-[0_0_15px_rgba(206,87,223,0.3)] transition-all whitespace-nowrap shrink-0 flex items-center gap-1.5"
+            className="px-3.5 sm:px-4 py-2 text-xs font-bold text-white bg-gradient-to-r from-[#b104dc] to-[#130169] rounded-lg hover:from-[#b104dc] hover:to-[#422774] border border-[#ce57df]/50 shadow-[0_0_15px_rgba(206,87,223,0.3)] transition-all whitespace-nowrap shrink-0 flex items-center gap-1.5"
           >
             <FileText className="w-3.5 h-3.5 text-[#82e5ff]" />
             <span className="hidden sm:inline">Relatório da Sessão</span>
@@ -93,7 +83,7 @@ export const Header: React.FC<HeaderProps> = ({
               className={`px-3 py-1.5 text-xs rounded-lg whitespace-nowrap shrink-0 transition-all font-medium ${
                 isActive
                   ? 'bg-gradient-to-r from-[#b104dc] to-[#130169] text-white border border-[#ce57df]/50 font-bold'
-                  : 'text-[#e1eefc]/70 hover:text-white bg-[#130169]/30'
+                  : 'text-[#b4c0d9] hover:text-white bg-[#130169]/30'
               }`}
             >
               {item.label}

@@ -1,6 +1,5 @@
 import React from 'react';
 import { X, Shield, PhoneCall, AlertTriangle, Cpu, HardDrive, BookOpen, ExternalLink, HeartHandshake } from 'lucide-react';
-import { PsicothicaLogo } from './PsicothicaLogo';
 
 interface AboutMaterialModalProps {
   isOpen: boolean;
@@ -30,9 +29,16 @@ export const AboutMaterialModal: React.FC<AboutMaterialModalProps> = ({ isOpen, 
 
         {/* Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pb-4 border-b border-[#82e5ff]/20">
-          <PsicothicaLogo size="md" showWordmark={false} />
+          <img
+            src={`${import.meta.env.BASE_URL}psi-kit/logo/logo-64.png`}
+            srcSet={`${import.meta.env.BASE_URL}psi-kit/logo/logo-64.png 1x, ${import.meta.env.BASE_URL}psi-kit/logo/logo-128.png 2x`}
+            width={52}
+            height={52}
+            alt="Logomarca Psicothica"
+            className="shrink-0"
+          />
           <div>
-            <div className="flex flex-wrap items-center gap-2 text-[11px] font-tech text-[#ce57df] mb-1">
+            <div className="flex flex-wrap items-center gap-2 text-[11px] font-tech text-[#ec9eff] mb-1">
               <span className="uppercase font-bold tracking-wider">AyA Clínica Integrada · Programa Ramificar</span>
               <span aria-hidden="true" className="text-slate-600">/</span>
               <span className="text-[#82e5ff]">Versão 1.0</span>
@@ -46,7 +52,7 @@ export const AboutMaterialModal: React.FC<AboutMaterialModalProps> = ({ isOpen, 
         {/* Authorship & Institution Card */}
         <div className="p-4 rounded-xl bg-gradient-to-r from-[#130169]/80 via-[#220d52]/60 to-[#130169]/80 border border-[#ce57df]/40 space-y-2">
           <div className="flex items-center gap-2 text-xs font-tech font-bold text-[#ec9eff]">
-            <HeartHandshake className="w-4 h-4 text-[#ce57df]" />
+            <HeartHandshake className="w-4 h-4 text-[#ec9eff]" />
             <span>DESENVOLVIMENTO & RESPONSABILIDADE TÉCNICA</span>
           </div>
           <p className="text-sm text-slate-100 font-medium leading-relaxed">
@@ -60,18 +66,18 @@ export const AboutMaterialModal: React.FC<AboutMaterialModalProps> = ({ isOpen, 
             <Shield className="w-4 h-4 text-[#02bbff]" />
             <span>FINALIDADE INFORMATIVA E DE APOIO</span>
           </div>
-          <p className="text-sm text-[#e1eefc]/90 leading-relaxed">
+          <p className="text-sm text-[#e1eefc] leading-relaxed">
             Este é um material informativo e de apoio. Ele não substitui avaliação, diagnóstico ou acompanhamento profissional, e não oferece promessa de cura ou de resultado.
           </p>
         </div>
 
         {/* AI Transparency */}
         <div className="p-4 rounded-xl bg-[#090d20] border border-[#ce57df]/25 space-y-2">
-          <div className="flex items-center gap-2 text-xs font-tech font-bold text-[#ce57df]">
-            <Cpu className="w-4 h-4 text-[#ce57df]" />
+          <div className="flex items-center gap-2 text-xs font-tech font-bold text-[#ec9eff]">
+            <Cpu className="w-4 h-4 text-[#ec9eff]" />
             <span>ELABORAÇÃO & TECNOLOGIA</span>
           </div>
-          <p className="text-sm text-[#e1eefc]/90 leading-relaxed">
+          <p className="text-sm text-[#e1eefc] leading-relaxed">
             O conteúdo e a interface foram elaborados com o auxílio de ferramentas de inteligência artificial e revisados pela profissional responsável.
           </p>
         </div>
@@ -82,7 +88,7 @@ export const AboutMaterialModal: React.FC<AboutMaterialModalProps> = ({ isOpen, 
             <HardDrive className="w-4 h-4 text-[#02bbff]" />
             <span>PRIVACIDADE E ARMAZENAMENTO LOCAL</span>
           </div>
-          <p className="text-sm text-[#e1eefc]/90 leading-relaxed">
+          <p className="text-sm text-[#e1eefc] leading-relaxed">
             Seus dados ficam só neste aparelho. Nada do que você escreve aqui é enviado para a AyA nem para terceiros. Se você baixar um arquivo, ele levará o que você escreveu: guarde-o com cuidado.
           </p>
         </div>
@@ -99,6 +105,8 @@ export const AboutMaterialModal: React.FC<AboutMaterialModalProps> = ({ isOpen, 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
             <a
               href="tel:188"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center justify-between p-3 rounded-lg bg-black/40 hover:bg-black/60 border border-red-400/40 text-white font-tech transition-all"
             >
               <div className="flex items-center gap-2.5">
@@ -113,6 +121,8 @@ export const AboutMaterialModal: React.FC<AboutMaterialModalProps> = ({ isOpen, 
 
             <a
               href="tel:192"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center justify-between p-3 rounded-lg bg-black/40 hover:bg-black/60 border border-red-400/40 text-white font-tech transition-all"
             >
               <div className="flex items-center gap-2.5">
@@ -135,7 +145,7 @@ export const AboutMaterialModal: React.FC<AboutMaterialModalProps> = ({ isOpen, 
           <div className="flex items-center justify-between text-xs font-tech text-[#82e5ff]">
             <span className="font-bold">Versão 1.0 · revisado em Outubro/2026</span>
           </div>
-          <p className="text-xs text-[#e1eefc]/80 leading-relaxed">
+          <p className="text-xs text-[#b4c0d9] leading-relaxed">
             As informações sobre diagnóstico e tratamento médico têm caráter apenas informativo e se baseiam em literatura científica publicada [referências ao final]. Decisões sobre medicação ou tratamento devem ser tomadas com seu(sua) médico(a).
           </p>
         </div>
@@ -146,7 +156,7 @@ export const AboutMaterialModal: React.FC<AboutMaterialModalProps> = ({ isOpen, 
             <BookOpen className="w-3.5 h-3.5 text-[#02bbff]" />
             <span>REFERÊNCIAS CIENTÍFICAS E BASES TEÓRICAS</span>
           </div>
-          <ul className="text-[11px] text-[#e1eefc]/70 space-y-1.5 list-disc pl-4 font-mono leading-relaxed">
+          <ul className="text-[11px] text-[#b4c0d9] space-y-1.5 list-disc pl-4 font-mono leading-relaxed">
             <li>
               Hayes, S. C., Strosahl, K. D., & Wilson, K. G. (2012). <em>Acceptance and Commitment Therapy: The Process and Practice of Mindful Change</em> (2nd ed.). Guilford Press.
             </li>
@@ -170,7 +180,7 @@ export const AboutMaterialModal: React.FC<AboutMaterialModalProps> = ({ isOpen, 
           <button
             type="button"
             onClick={onClose}
-            className="px-5 py-2 text-xs font-bold font-tech text-white bg-gradient-to-r from-[#b104dc] to-[#130169] rounded-xl hover:from-[#ce57df] hover:to-[#422774] border border-[#ce57df]/50 transition-all shadow-[0_0_15px_rgba(206,87,223,0.3)]"
+            className="px-5 py-2 text-xs font-bold font-tech text-white bg-gradient-to-r from-[#b104dc] to-[#130169] rounded-xl hover:from-[#b104dc] hover:to-[#422774] border border-[#ce57df]/50 transition-all shadow-[0_0_15px_rgba(206,87,223,0.3)]"
           >
             Entendido e Fechar
           </button>

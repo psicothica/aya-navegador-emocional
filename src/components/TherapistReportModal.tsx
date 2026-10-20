@@ -99,14 +99,14 @@ Em caso de risco ou crise: CVV 188 (24h) | SAMU 192.
 
         {/* Modal Header */}
         <div className="pb-4 border-b border-[#82e5ff]/20">
-          <div className="flex items-center gap-2 text-xs font-tech text-[#ce57df] mb-1">
-            <FileText className="w-4 h-4 text-[#ce57df]" />
+          <div className="flex items-center gap-2 text-xs font-tech text-[#ec9eff] mb-1">
+            <FileText className="w-4 h-4 text-[#ec9eff]" />
             <span>RELATÓRIO CLÍNICO DE ACOMPANHAMENTO // PSICOTHICA</span>
           </div>
           <h3 className="font-display text-xl sm:text-2xl font-bold text-white uppercase">
             Dados de Rede para a Sessão
           </h3>
-          <p className="text-xs text-[#e1eefc]/70 mt-1">
+          <p className="text-xs text-[#b4c0d9] mt-1">
             Métricas puras e episódios mapeados para discutir com seu psicoterapeuta sem rodeios.
           </p>
         </div>
@@ -128,7 +128,7 @@ Em caso de risco ou crise: CVV 188 (24h) | SAMU 192.
             <button
               type="button"
               onClick={handlePrint}
-              className="px-3.5 py-1.5 bg-gradient-to-r from-[#ce57df] to-[#b104dc] text-white text-xs font-tech font-bold rounded-lg transition-all flex items-center gap-1.5 shadow-[0_0_12px_rgba(206,87,223,0.4)]"
+              className="px-3.5 py-1.5 bg-gradient-to-r from-[#b104dc] to-[#b104dc] text-white text-xs font-tech font-bold rounded-lg transition-all flex items-center gap-1.5 shadow-[0_0_12px_rgba(206,87,223,0.4)]"
             >
               <Printer className="w-3.5 h-3.5" />
               <span>Imprimir / PDF</span>
@@ -145,7 +145,7 @@ Em caso de risco ou crise: CVV 188 (24h) | SAMU 192.
               <strong className="text-white font-mono text-sm">{new Date().toLocaleDateString('pt-BR')}</strong>
             </div>
             <div>
-              <span className="text-[#ce57df] font-tech text-[10px] block uppercase">Registros Avaliados:</span>
+              <span className="text-[#ec9eff] font-tech text-[10px] block uppercase">Registros Avaliados:</span>
               <strong className="text-white font-mono text-sm">{totalLogs} dias no radar</strong>
             </div>
           </div>
@@ -157,19 +157,19 @@ Em caso de risco ou crise: CVV 188 (24h) | SAMU 192.
             </h4>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               <div className="p-3 bg-[#0f142a] rounded-xl border border-[#82e5ff]/20 text-center">
-                <span className="text-[10px] font-tech text-[#e1eefc]/60 block uppercase">Flexibilidade</span>
+                <span className="text-[10px] font-tech text-[#b4c0d9] block uppercase">Flexibilidade</span>
                 <strong className="text-base font-bold text-[#02bbff] font-mono tabular-nums">{avgFlexibility}%</strong>
               </div>
               <div className="p-3 bg-[#0f142a] rounded-xl border border-[#ce57df]/25 text-center">
-                <span className="text-[10px] font-tech text-[#e1eefc]/60 block uppercase">Autonomia (#9)</span>
-                <strong className="text-base font-bold text-[#ce57df] font-mono tabular-nums">{avgAutonomy}%</strong>
+                <span className="text-[10px] font-tech text-[#b4c0d9] block uppercase">Autonomia (#9)</span>
+                <strong className="text-base font-bold text-[#ec9eff] font-mono tabular-nums">{avgAutonomy}%</strong>
               </div>
               <div className="p-3 bg-[#0f142a] rounded-xl border border-[#82e5ff]/20 text-center">
-                <span className="text-[10px] font-tech text-[#e1eefc]/60 block uppercase">Retenção de Hábitos</span>
+                <span className="text-[10px] font-tech text-[#b4c0d9] block uppercase">Retenção de Hábitos</span>
                 <strong className="text-base font-bold text-[#82e5ff] font-mono tabular-nums">{avgRetention}%</strong>
               </div>
               <div className="p-3 bg-[#0f142a] rounded-xl border border-[#ce57df]/25 text-center">
-                <span className="text-[10px] font-tech text-[#e1eefc]/60 block uppercase">Desfusão</span>
+                <span className="text-[10px] font-tech text-[#b4c0d9] block uppercase">Desfusão</span>
                 <strong className="text-base font-bold text-[#ec9eff] font-mono tabular-nums">{avgDefusion}%</strong>
               </div>
             </div>
@@ -177,10 +177,10 @@ Em caso de risco ou crise: CVV 188 (24h) | SAMU 192.
 
           {/* Choice Point Summary */}
           <div className="space-y-2">
-            <h4 className="font-tech text-xs font-bold text-[#ce57df] uppercase tracking-wider">
+            <h4 className="font-tech text-xs font-bold text-[#ec9eff] uppercase tracking-wider">
               2. Comportamento no Ponto de Escolha
             </h4>
-            <p className="text-[#e1eefc]/80">
+            <p className="text-[#b4c0d9]">
               Foram registradas <strong className="font-mono text-white">{choicePoints.length} encruzilhadas</strong>: {towardCount} ações de aproximação (Toward) e {awayCount} movimentos de afastamento (Away).
             </p>
           </div>
@@ -192,15 +192,15 @@ Em caso de risco ou crise: CVV 188 (24h) | SAMU 192.
             </h4>
 
             {sharedChoicePoints.length === 0 ? (
-              <div className="p-4 bg-[#0f142a] rounded-xl border border-[#82e5ff]/15 text-center text-xs text-[#e1eefc]/60 font-tech">
+              <div className="p-4 bg-[#0f142a] rounded-xl border border-[#82e5ff]/15 text-center text-xs text-[#b4c0d9] font-tech">
                 Nenhuma encruzilhada marcada para a sessão ainda. No Ponto de Escolha, você pode marcar momentos reais para discutir com seu terapeuta.
               </div>
             ) : (
               sharedChoicePoints.map((cp, idx) => (
                 <div key={cp.id} className="p-3.5 bg-[#0f142a] rounded-xl border border-[#82e5ff]/15 space-y-1.5">
-                  <div className="flex items-center justify-between text-[11px] font-tech text-[#e1eefc]/60">
+                  <div className="flex items-center justify-between text-[11px] font-tech text-[#b4c0d9]">
                     <span className="text-[#82e5ff]">{cp.date} · {cp.time}</span>
-                    <span className={`font-bold ${cp.choiceType === 'toward' ? 'text-[#02bbff]' : 'text-[#ce57df]'}`}>
+                    <span className={`font-bold ${cp.choiceType === 'toward' ? 'text-[#02bbff]' : 'text-[#ec9eff]'}`}>
                       {cp.choiceType === 'toward' ? 'TOWARD (APROXIMAÇÃO)' : 'AWAY (AFASTAMENTO)'}
                     </span>
                   </div>
@@ -218,7 +218,7 @@ Em caso de risco ou crise: CVV 188 (24h) | SAMU 192.
                     </div>
                   )}
                   {cp.reflection && (
-                    <div className="text-[#e1eefc]/70 font-signature text-sm pt-1 border-t border-slate-800">
+                    <div className="text-[#b4c0d9] font-signature text-sm pt-1 border-t border-slate-800">
                       &ldquo;{cp.reflection}&rdquo;
                     </div>
                   )}
@@ -230,7 +230,7 @@ Em caso de risco ou crise: CVV 188 (24h) | SAMU 192.
 
         {/* Footer */}
         <div className="pt-3 border-t border-[#82e5ff]/15 flex items-center justify-between">
-          <span className="text-[11px] font-tech text-[#82e5ff]/60">
+          <span className="text-[11px] font-tech text-[#82e5ff]">
             PSICOTHICA // AYÁ ECOSSISTEMA CLÍNICO
           </span>
           <button

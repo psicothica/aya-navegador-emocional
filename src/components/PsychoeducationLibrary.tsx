@@ -62,8 +62,8 @@ export const PsychoeducationLibrary: React.FC = () => {
             onClick={() => setSelectedCategory(cat.id)}
             className={`px-3.5 py-1.5 text-xs font-tech font-bold rounded-xl transition-all whitespace-nowrap border ${
               selectedCategory === cat.id
-                ? 'bg-gradient-to-r from-[#ce57df] to-[#130169] text-white border-[#ce57df] shadow-[0_0_12px_rgba(206,87,223,0.35)]'
-                : 'glass-panel text-[#e1eefc]/70 hover:text-white border-[#82e5ff]/15 hover:border-[#82e5ff]/35'
+                ? 'bg-gradient-to-r from-[#b104dc] to-[#130169] text-white border-[#ce57df] shadow-[0_0_12px_rgba(206,87,223,0.35)]'
+                : 'glass-panel text-[#b4c0d9] hover:text-white border-[#82e5ff]/15 hover:border-[#82e5ff]/35'
             }`}
           >
             {cat.label}
@@ -88,7 +88,7 @@ export const PsychoeducationLibrary: React.FC = () => {
                     : 'glass-panel border-[#82e5ff]/15 hover:border-[#82e5ff]/35'
                 }`}
               >
-                <div className="flex items-center justify-between text-[11px] font-tech text-[#ce57df] mb-1">
+                <div className="flex items-center justify-between text-[11px] font-tech text-[#ec9eff] mb-1">
                   <span>{article.category}</span>
                   <span className="flex items-center gap-1 text-[#82e5ff]">
                     <Clock className="w-3 h-3" />
@@ -98,7 +98,7 @@ export const PsychoeducationLibrary: React.FC = () => {
                 <h4 className="font-display text-sm font-bold text-white line-clamp-2">
                   {article.title}
                 </h4>
-                <p className="text-[11px] text-[#e1eefc]/70 line-clamp-2 mt-1">
+                <p className="text-[11px] text-[#b4c0d9] line-clamp-2 mt-1">
                   {article.abstract}
                 </p>
               </button>
@@ -117,7 +117,7 @@ export const PsychoeducationLibrary: React.FC = () => {
             <h3 className="font-display text-xl sm:text-2xl font-extrabold text-white tracking-tight">
               {activeArticle.title}
             </h3>
-            <p className="text-xs text-[#e1eefc]/80 mt-2 leading-relaxed">
+            <p className="text-xs text-[#b4c0d9] mt-2 leading-relaxed">
               {activeArticle.abstract}
             </p>
           </div>
@@ -125,10 +125,10 @@ export const PsychoeducationLibrary: React.FC = () => {
           {/* Key Points Box */}
           <div className="p-4 bg-[#130169]/40 rounded-xl border border-[#ce57df]/30 space-y-2">
             <span className="font-tech text-xs font-bold text-[#ce57df] uppercase flex items-center gap-1.5 glow-magenta">
-              <Sparkles className="w-4 h-4 text-[#ce57df]" />
+              <Sparkles className="w-4 h-4 text-[#ec9eff]" />
               Pontos de Choque para Fixar no Córtex:
             </span>
-            <ul className="space-y-1.5 text-xs text-[#e1eefc]/90">
+            <ul className="space-y-1.5 text-xs text-[#e1eefc]">
               {activeArticle.keyPoints.map((pt, i) => (
                 <li key={i} className="flex items-start gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-[#02bbff] shrink-0 mt-0.5" />
@@ -145,7 +145,7 @@ export const PsychoeducationLibrary: React.FC = () => {
                 <h4 className="font-display text-sm font-bold text-white uppercase tracking-wide">
                   {sec.heading}
                 </h4>
-                <p className="text-[#e1eefc]/85 leading-relaxed text-justify">
+                <p className="text-[#e1eefc] leading-relaxed text-justify">
                   {sec.text}
                 </p>
                 {sec.clinicalTakeaway && (

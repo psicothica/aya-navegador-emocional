@@ -8,7 +8,7 @@ export const StruggleSwitchTool: React.FC = () => {
     <div className="glass-panel rounded-2xl p-6 border border-[#82e5ff]/20 shadow-[0_12px_40px_rgba(0,0,0,0.4)]">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#82e5ff]/15">
         <div>
-          <div className="flex items-center gap-2 text-xs font-tech text-[#ce57df] mb-1">
+          <div className="flex items-center gap-2 text-xs font-tech text-[#ec9eff] mb-1">
             <span>METÁFORA CLÍNICA DE RUSS HARRIS // 4ª ONDA</span>
             <span aria-hidden="true" className="text-slate-600">/</span>
             <span>ACEITAÇÃO EXPERIENCIAL</span>
@@ -30,7 +30,7 @@ export const StruggleSwitchTool: React.FC = () => {
         >
           {isSwitchOn ? (
             <>
-              <ToggleRight className="w-5 h-5 text-[#ce57df]" />
+              <ToggleRight className="w-5 h-5 text-[#ec9eff]" />
               <span>INTERRUPTOR: LIGADO (GUERRA)</span>
             </>
           ) : (
@@ -54,17 +54,17 @@ export const StruggleSwitchTool: React.FC = () => {
         >
           <div className="flex items-center justify-between mb-3">
             <span className="font-tech text-xs font-bold uppercase text-[#ce57df] flex items-center gap-1.5 glow-magenta">
-              <Flame className="w-4 h-4 text-[#ce57df]" />
+              <Flame className="w-4 h-4 text-[#ec9eff]" />
               Interruptor LIGADO: Fogo Amigo
             </span>
             {isSwitchOn && (
-              <span className="font-tech text-[10px] bg-[#ce57df] text-white px-2 py-0.5 rounded">
+              <span className="font-tech text-[10px] bg-[#b104dc] text-white px-2 py-0.5 rounded">
                 Ativo Agora
               </span>
             )}
           </div>
 
-          <div className="space-y-2.5 text-xs text-[#e1eefc]/90">
+          <div className="space-y-2.5 text-xs text-[#e1eefc]">
             <div className="p-3 bg-[#0f142a]/80 rounded-lg border border-[#ce57df]/20">
               <strong className="text-[#ec9eff] font-tech text-[11px] block mb-0.5 uppercase">
                 1. Dor Primária (Biológica):
@@ -72,7 +72,7 @@ export const StruggleSwitchTool: React.FC = () => {
               Tristeza pesada, frio no estômago ou taquicardia real.
             </div>
             <div className="p-3 bg-[#0f142a]/80 rounded-lg border border-[#ce57df]/20">
-              <strong className="text-[#ce57df] font-tech text-[11px] block mb-0.5 uppercase">
+              <strong className="text-[#ec9eff] font-tech text-[11px] block mb-0.5 uppercase">
                 2. Pânico Secundário (A Luta):
               </strong>
               &ldquo;Eu não posso ficar assim! Tenho que dar um jeito nisso agora! Por que comigo?&rdquo;
@@ -106,7 +106,7 @@ export const StruggleSwitchTool: React.FC = () => {
             )}
           </div>
 
-          <div className="space-y-2.5 text-xs text-[#e1eefc]/90">
+          <div className="space-y-2.5 text-xs text-[#e1eefc]">
             <div className="p-3 bg-[#0f142a]/80 rounded-lg border border-[#02bbff]/20">
               <strong className="text-[#82e5ff] font-tech text-[11px] block mb-0.5 uppercase">
                 1. Dor Primária (Acolhida):
@@ -130,8 +130,8 @@ export const StruggleSwitchTool: React.FC = () => {
       </div>
 
       {/* Signature note */}
-      <div className="mt-4 pt-4 border-t border-[#82e5ff]/15 flex items-start gap-2.5 text-xs text-[#e1eefc]/70 font-signature text-base">
-        <Sparkles className="w-4 h-4 text-[#ce57df] shrink-0 mt-1" />
+      <div className="mt-4 pt-4 border-t border-[#82e5ff]/15 flex items-start gap-2.5 text-xs text-[#b4c0d9] font-signature text-base">
+        <Sparkles className="w-4 h-4 text-[#ec9eff] shrink-0 mt-1" />
         <p>
           &ldquo;Desligar o interruptor não é virar monge budista nem fingir que achou gostoso sofrer. É só a decisão madura de parar de jogar gasolina no próprio fogo.&rdquo; — Alanne (Psicothica)
         </p>

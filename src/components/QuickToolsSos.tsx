@@ -19,7 +19,7 @@ export const QuickToolsSos: React.FC = () => {
         <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-white tracking-tight uppercase">
           Caixa de Ferramentas <span className="text-[#ce57df] glow-magenta">Rápidas (SOS)</span>
         </h2>
-        <p className="text-xs text-[#e1eefc]/70 mt-1 max-w-2xl">
+        <p className="text-xs text-[#b4c0d9] mt-1 max-w-2xl">
           Quando a mente estiver em volume ensurdecedor e você precisar de aterramento biológico imediato. Sem rodeios: selecione a arma e execute.
         </p>
       </div>
@@ -71,7 +71,7 @@ export const QuickToolsSos: React.FC = () => {
               : 'glass-panel border-[#82e5ff]/15 hover:border-[#82e5ff]/35'
           }`}
         >
-          <Sparkles className="w-5 h-5 text-[#ce57df] mb-2" />
+          <Sparkles className="w-5 h-5 text-[#ec9eff] mb-2" />
           <div className="font-tech text-xs font-bold text-white uppercase">
             Desfusor WRT (35s)
           </div>
@@ -121,7 +121,7 @@ export const QuickToolsSos: React.FC = () => {
                 <div className="font-tech font-bold text-[#82e5ff] text-sm uppercase">
                   1. A // ACKNOWLEDGE
                 </div>
-                <p className="text-[#e1eefc]/90 leading-relaxed">
+                <p className="text-[#e1eefc] leading-relaxed">
                   Note com honestidade crua o que tá acontecendo aí dentro: a tristeza, a ansiedade, a mente tagarelando que você vai falhar. Fale pra você mesmo: &ldquo;Noto que a dor tá aqui&rdquo;. Sem drama.
                 </p>
               </div>
@@ -130,7 +130,7 @@ export const QuickToolsSos: React.FC = () => {
                 <div className="font-tech font-bold text-[#82e5ff] text-sm uppercase">
                   2. C // COME BACK
                 </div>
-                <p className="text-[#e1eefc]/90 leading-relaxed">
+                <p className="text-[#e1eefc] leading-relaxed">
                   Bate os calcanhares no chão. Endireita as costas. Sinta a gravidade te segurando no planeta. Abra e feche as mãos. O seu corpo físico é seu território soberano, mesmo em dia de tempestade.
                 </p>
               </div>
@@ -139,7 +139,7 @@ export const QuickToolsSos: React.FC = () => {
                 <div className="font-tech font-bold text-[#82e5ff] text-sm uppercase">
                   3. E // ENGAGE
                 </div>
-                <p className="text-[#e1eefc]/90 leading-relaxed">
+                <p className="text-[#e1eefc] leading-relaxed">
                   Olhe 3 coisas ao redor. Ouça o barulho mais distante lá fora. Sinta o ar na pele. E volte pro que você tava fazendo por 5 minutos, levando a dor com você na garupa.
                 </p>
               </div>

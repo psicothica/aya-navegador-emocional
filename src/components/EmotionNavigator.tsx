@@ -95,8 +95,7 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
     });
   };
 
-  const handleAddCustomValue = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleAddCustomValue = () => {
     if (!customValueInput.trim()) return;
     const trimmed = customValueInput.trim();
     if (!selectedValues.includes(trimmed)) {
@@ -204,7 +203,7 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
             </span>
           </div>
         </div>
-        <p className="text-xs text-[#e1eefc]/70 mt-1 max-w-2xl">
+        <p className="text-xs text-[#b4c0d9] mt-1 max-w-2xl">
           Selecione o estado biológico e emocional que tomou conta de você agora. Escolha seus próprios valores, escreva seus pensamentos reais e defina sua própria micro-ação.
         </p>
 
@@ -246,9 +245,9 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
               {selectedProfile.emoji}
             </span>
             <div>
-              <div className="flex items-center gap-2 text-xs font-tech text-[#ce57df] mb-1">
+              <div className="flex items-center gap-2 text-xs font-tech text-[#ec9eff] mb-1">
                 <span>{selectedProfile.tagline}</span>
-                <span aria-hidden="true" className="text-[#82e5ff]/40">·</span>
+                <span aria-hidden="true" className="text-[#82e5ff]">·</span>
                 <span className="text-[#82e5ff]">FOCO: {selectedProfile.primaryValueDomain.toUpperCase()}</span>
               </div>
               <h3 className="font-display text-xl sm:text-2xl font-bold text-white tracking-tight">
@@ -273,7 +272,7 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
               onClick={() => setActiveModalTool('wrt')}
               className="px-3.5 py-1.5 text-xs font-tech font-semibold text-[#ec9eff] bg-[#422774]/50 hover:bg-[#422774] border border-[#ce57df]/40 rounded-lg transition-all flex items-center gap-1.5 whitespace-nowrap"
             >
-              <Sparkles className="w-3.5 h-3.5 text-[#ce57df]" />
+              <Sparkles className="w-3.5 h-3.5 text-[#ec9eff]" />
               <span>Desarmar Palavra (35s)</span>
             </button>
             <button
@@ -295,16 +294,16 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
               <span className="font-tech font-bold text-[#82e5ff] uppercase tracking-wider">
                 O que acontece no seu corpo:
               </span>
-              <span className="font-tech text-xs text-[#ce57df]">fisiologia</span>
+              <span className="font-tech text-xs text-[#ec9eff]">fisiologia</span>
             </div>
-            <p className="text-[#e1eefc]/80 leading-relaxed mb-3">
+            <p className="text-[#b4c0d9] leading-relaxed mb-3">
               {selectedProfile.networkState}
             </p>
             <div className="flex flex-wrap gap-1.5">
               {selectedProfile.somaticManifestations.map((som, idx) => (
                 <span
                   key={idx}
-                  className="inline-block px-2 py-0.5 bg-[#0f142a] border border-[#82e5ff]/25 rounded text-[11px] text-[#e1eefc]/90 font-mono"
+                  className="inline-block px-2 py-0.5 bg-[#0f142a] border border-[#82e5ff]/25 rounded text-[11px] text-[#e1eefc] font-mono"
                 >
                   {som}
                 </span>
@@ -315,19 +314,19 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
           {/* Away Moves Warning */}
           <div className="p-4 rounded-xl bg-[#422774]/30 border border-[#ce57df]/35">
             <div className="flex items-center justify-between mb-1.5">
-              <span className="font-tech font-bold text-[#ce57df] uppercase tracking-wider flex items-center gap-1.5">
-                <AlertCircle className="w-3.5 h-3.5 text-[#ce57df]" />
+              <span className="font-tech font-bold text-[#ec9eff] uppercase tracking-wider flex items-center gap-1.5">
+                <AlertCircle className="w-3.5 h-3.5 text-[#ec9eff]" />
                 Armadilhas: Onde o impulso quer te jogar (Afastamento)
               </span>
             </div>
-            <div className="space-y-2 text-[#e1eefc]/90 mt-2">
+            <div className="space-y-2 text-[#e1eefc] mt-2">
               <div>
                 <strong className="text-[#ec9eff] font-tech text-[11px]">NA CABEÇA:</strong>{' '}
-                <span className="text-[#e1eefc]/80">{selectedProfile.awayMoves.covert.join(' · ')}</span>
+                <span className="text-[#b4c0d9]">{selectedProfile.awayMoves.covert.join(' · ')}</span>
               </div>
               <div>
                 <strong className="text-[#ec9eff] font-tech text-[11px]">NO CORPO (O IMPULSO DE FUGA):</strong>{' '}
-                <span className="text-[#e1eefc]/80">{selectedProfile.awayMoves.overt.join(' · ')}</span>
+                <span className="text-[#b4c0d9]">{selectedProfile.awayMoves.overt.join(' · ')}</span>
               </div>
             </div>
           </div>
@@ -338,7 +337,7 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
       <div className="glass-panel rounded-2xl p-6 border border-[#82e5ff]/20 shadow-[0_12px_40px_rgba(0,0,0,0.4)]">
         <div className="pb-3 border-b border-[#82e5ff]/15 flex items-center justify-between">
           <div>
-            <span className="text-xs font-tech text-[#ce57df] font-semibold uppercase">
+            <span className="text-xs font-tech text-[#ec9eff] font-semibold uppercase">
               Roteiro de Práticas Integradas
             </span>
             <h4 className="font-display text-base font-bold text-white mt-0.5">
@@ -363,10 +362,10 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
                 className={`flex items-center gap-2 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all whitespace-nowrap shrink-0 ${
                   isActive
                     ? 'bg-gradient-to-r from-[#b104dc] to-[#130169] text-white border border-[#ce57df] shadow-[0_0_12px_rgba(206,87,223,0.4)]'
-                    : 'text-[#e1eefc]/70 hover:text-white bg-[#0f142a]/80 border border-[#82e5ff]/15 hover:border-[#82e5ff]/40'
+                    : 'text-[#b4c0d9] hover:text-white bg-[#0f142a]/80 border border-[#82e5ff]/15 hover:border-[#82e5ff]/40'
                 }`}
               >
-                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-[#82e5ff]' : 'text-[#ce57df]'}`} />
+                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-[#82e5ff]' : 'text-[#ec9eff]'}`} />
                 <span>{pillar.title}</span>
               </button>
             );
@@ -402,7 +401,7 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
                   <span className="text-xs font-tech font-bold text-[#82e5ff] block mb-1.5 uppercase">
                     Comportamento Motor Recomendado:
                   </span>
-                  <ul className="space-y-1.5 text-xs text-[#e1eefc]/90 list-disc list-inside">
+                  <ul className="space-y-1.5 text-xs text-[#e1eefc] list-disc list-inside">
                     {selectedProfile.strategies.regulacaoEmocional.actionOppositeSteps.map((step, i) => (
                       <li key={i}>{step}</li>
                     ))}
@@ -410,7 +409,7 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
                 </div>
 
                 <div className="p-3 bg-[#422774]/40 rounded-lg border border-[#ce57df]/30 text-xs text-[#ec9eff] flex items-start gap-2.5">
-                  <Heart className="w-4 h-4 text-[#ce57df] shrink-0 mt-0.5" />
+                  <Heart className="w-4 h-4 text-[#ec9eff] shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-white font-tech">Por que funciona:</strong>{' '}
                     {selectedProfile.strategies.regulacaoEmocional.neurobiologicalRationale}
@@ -453,7 +452,7 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
                   <h5 className="font-display text-base font-bold text-white mb-1">
                     {selectedProfile.strategies.orientacao.title}
                   </h5>
-                  <p className="text-xs text-[#e1eefc]/90 leading-relaxed">
+                  <p className="text-xs text-[#e1eefc] leading-relaxed">
                     {selectedProfile.strategies.orientacao.attentionGuide}
                   </p>
                 </div>
@@ -465,7 +464,7 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
                       <Anchor className="w-4 h-4 text-[#02bbff]" />
                       Exercício de Presença: Lançar Âncora (ACE)
                     </span>
-                    <span className="font-tech text-xs text-[#ce57df]">
+                    <span className="font-tech text-xs text-[#ec9eff]">
                       Passo {aceStep + 1}/3
                     </span>
                   </div>
@@ -475,7 +474,7 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
                       <strong className="text-[#82e5ff] font-tech text-xs block">
                         A // RECONHEÇA (Acknowledge):
                       </strong>
-                      <p className="text-[#e1eefc]/90 leading-relaxed">
+                      <p className="text-[#e1eefc] leading-relaxed">
                         Feche os olhos por 10 segundos. Admita a verdade: &ldquo;Estou sentindo {selectedProfile.name.toLowerCase()} e o corpo está reagindo&rdquo;. Não tente forçar positividade. Apenas reconheça a sensação presente.
                       </p>
                       <button
@@ -493,7 +492,7 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
                       <strong className="text-[#82e5ff] font-tech text-xs block">
                         C // CONECTE AO CORPO (Come back):
                       </strong>
-                      <p className="text-[#e1eefc]/90 leading-relaxed">
+                      <p className="text-[#e1eefc] leading-relaxed">
                         Pressione a sola dos pés contra o chão. Sinta o corpo firme. Endireite as costas, mova os dedos das mãos, respire fundo. Mesmo com o desconforto, você tem um corpo sob seu comando voluntário.
                       </p>
                       <div className="flex gap-2">
@@ -520,14 +519,14 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
                       <strong className="text-[#82e5ff] font-tech text-xs block">
                         E // ENGAJE NO AMBIENTE (Engage):
                       </strong>
-                      <p className="text-[#e1eefc]/90 leading-relaxed">
+                      <p className="text-[#e1eefc] leading-relaxed">
                         Olhe ao redor na sala. Identifique 3 objetos com clareza. Ouça os sons imediatos. Sinta a temperatura do ar. A tempestade mental não é o mundo real: você está aqui, presente e capaz de agir.
                       </p>
                       <div className="flex gap-2">
                         <button
                           type="button"
                           onClick={() => setAceStep(0)}
-                          className="px-3.5 py-1.5 bg-[#ce57df] hover:bg-[#ec9eff] text-white rounded-lg text-xs font-tech font-bold transition-all flex items-center gap-1 shadow-[0_0_12px_rgba(206,87,223,0.4)]"
+                          className="px-3.5 py-1.5 bg-[#b104dc] hover:brightness-110 text-white rounded-lg text-xs font-tech font-bold transition-all flex items-center gap-1 shadow-[0_0_12px_rgba(206,87,223,0.4)]"
                         >
                           <Check className="w-3.5 h-3.5" />
                           <span>Âncora Lançada com Sucesso</span>
@@ -541,11 +540,11 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
                 <div className="p-4 bg-[#0f142a]/95 rounded-xl border border-[#ce57df]/35 space-y-4">
                   <div className="flex items-center justify-between">
                     <div>
-                      <span className="font-tech text-xs font-bold text-[#ce57df] uppercase flex items-center gap-1.5">
-                        <Compass className="w-4 h-4 text-[#ce57df]" />
+                      <span className="font-tech text-xs font-bold text-[#ec9eff] uppercase flex items-center gap-1.5">
+                        <Compass className="w-4 h-4 text-[#ec9eff]" />
                         Sua Bússola de Valores: Escolha o que você quer honrar hoje
                       </span>
-                      <p className="text-[11px] text-[#e1eefc]/70 mt-0.5">
+                      <p className="text-[11px] text-[#b4c0d9] mt-0.5">
                         Marque uma ou mais direções que fazem sentido para você, ou digite seu valor próprio:
                       </p>
                     </div>
@@ -562,7 +561,7 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
                           onClick={() => handleToggleValue(val)}
                           className={`px-3 py-1.5 text-xs rounded-xl font-medium transition-all flex items-center gap-1.5 border ${
                             isSelected
-                              ? 'bg-gradient-to-r from-[#ce57df] to-[#130169] text-white border-[#ce57df] shadow-[0_0_10px_rgba(206,87,223,0.4)] font-bold'
+                              ? 'bg-gradient-to-r from-[#b104dc] to-[#130169] text-white border-[#ce57df] shadow-[0_0_10px_rgba(206,87,223,0.4)] font-bold'
                               : 'bg-[#130169]/40 text-[#82e5ff] border-[#02bbff]/30 hover:border-[#82e5ff]'
                           }`}
                         >
@@ -578,22 +577,29 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
                   </div>
 
                   {/* Custom value input */}
-                  <form onSubmit={handleAddCustomValue} className="flex items-center gap-2 pt-1">
+                  <div className="flex items-center gap-2 pt-1">
                     <input
                       type="text"
                       value={customValueInput}
                       onChange={(e) => setCustomValueInput(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          handleAddCustomValue();
+                        }
+                      }}
                       placeholder="Adicionar outro valor pessoal (ex: Honestidade, Família...)"
                       className="flex-1 text-xs px-3 py-1.5 bg-[#0f142a] text-white border border-[#82e5ff]/25 rounded-lg focus:outline-none focus:border-[#02bbff]"
                     />
                     <button
-                      type="submit"
+                      type="button"
+                      onClick={handleAddCustomValue}
                       disabled={!customValueInput.trim()}
                       className="px-3 py-1.5 bg-[#02bbff] hover:bg-[#82e5ff] disabled:opacity-40 text-[#0f142a] rounded-lg text-xs font-tech font-bold transition-all"
                     >
                       + Inserir
                     </button>
-                  </form>
+                  </div>
 
                   {/* If no value selected yet */}
                   {selectedValues.length === 0 && (
@@ -617,11 +623,11 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
                           const advice = selectedProfile.strategies.orientacao.valueRecommendations?.[val];
                           return (
                             <div key={val} className="p-3 bg-[#130169]/40 rounded-xl border border-[#02bbff]/20 text-xs space-y-1">
-                              <div className="flex items-center gap-1.5 font-tech font-bold text-[#ce57df]">
+                              <div className="flex items-center gap-1.5 font-tech font-bold text-[#ec9eff]">
                                 <span>⭐</span>
                                 <span>{val}</span>
                               </div>
-                              <p className="text-[#e1eefc]/90 text-[11px] leading-relaxed">
+                              <p className="text-[#e1eefc] text-[11px] leading-relaxed">
                                 {advice ? advice.tip : 'Honrar este valor significa agir com compromisso consigo mesmo mesmo quando o desconforto aparece.'}
                               </p>
                               <div className="text-[11px] text-[#82e5ff] bg-[#0f142a]/80 p-2 rounded-lg border border-[#82e5ff]/20 mt-1">
@@ -680,15 +686,15 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
                     <strong className="text-[#82e5ff] font-tech text-xs block uppercase">
                       Aceitação dos Fatos Já Ocorridos:
                     </strong>
-                    <p className="text-[#e1eefc]/85 leading-relaxed">
+                    <p className="text-[#e1eefc] leading-relaxed">
                       {selectedProfile.strategies.aceitacaoRealidade.radicalAcceptance}
                     </p>
                   </div>
                   <div className="p-3.5 bg-[#0f142a]/90 rounded-xl border border-[#ce57df]/25 space-y-1.5">
-                    <strong className="text-[#ce57df] font-tech text-xs block uppercase">
+                    <strong className="text-[#ec9eff] font-tech text-xs block uppercase">
                       Acolhimento das Emoções Presentes:
                     </strong>
-                    <p className="text-[#e1eefc]/85 leading-relaxed">
+                    <p className="text-[#e1eefc] leading-relaxed">
                       {selectedProfile.strategies.aceitacaoRealidade.experientialAcceptance}
                     </p>
                   </div>
@@ -738,7 +744,7 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
                   <h5 className="font-display text-base font-bold text-white">
                     {selectedProfile.strategies.desfusaoCognitiva.title}
                   </h5>
-                  <p className="text-xs text-[#e1eefc]/90 leading-relaxed mt-0.5">
+                  <p className="text-xs text-[#e1eefc] leading-relaxed mt-0.5">
                     {selectedProfile.strategies.desfusaoCognitiva.defusionMechanism}
                   </p>
                 </div>
@@ -746,8 +752,8 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
                 {/* Patient's Own Thought Input */}
                 <div className="p-4 bg-[#0f142a]/95 rounded-xl border border-[#ce57df]/40 space-y-3">
                   <div className="flex items-center justify-between">
-                    <label className="font-tech text-xs font-bold text-[#ce57df] uppercase flex items-center gap-1.5">
-                      <Edit3 className="w-4 h-4 text-[#ce57df]" />
+                    <label className="font-tech text-xs font-bold text-[#ec9eff] uppercase flex items-center gap-1.5">
+                      <Edit3 className="w-4 h-4 text-[#ec9eff]" />
                       Qual é o pensamento exato que sua mente está te dizendo agora?
                     </label>
                     <button
@@ -778,7 +784,7 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
                         {selectedProfile.strategies.desfusaoCognitiva.thoughtExamples.map((ex, i) => (
                           <div
                             key={i}
-                            className="flex items-center justify-between p-2 bg-[#0f142a]/80 rounded-lg text-[11px] text-[#e1eefc]/80 border border-[#82e5ff]/10"
+                            className="flex items-center justify-between p-2 bg-[#0f142a]/80 rounded-lg text-[11px] text-[#b4c0d9] border border-[#82e5ff]/10"
                           >
                             <span>{ex}</span>
                             <button
@@ -801,7 +807,7 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
                         Como Desarmar Esse Pensamento Específico em 3 Passos:
                       </span>
                       <div className="p-2 bg-[#422774]/30 rounded-lg text-[#ec9eff] border border-[#ce57df]/20 font-mono text-[11px]">
-                        <span className="text-[#ce57df] font-bold">1. Acreditando cego:</span> &ldquo;{patientThought}&rdquo;
+                        <span className="text-[#ec9eff] font-bold">1. Acreditando cego:</span> &ldquo;{patientThought}&rdquo;
                       </div>
                       <div className="p-2 bg-[#01366d]/30 rounded-lg text-[#82e5ff] border border-[#02bbff]/20 font-mono text-[11px]">
                         <span className="text-[#02bbff] font-bold">2. Notando a mente:</span> &ldquo;Estou tendo o pensamento de que {patientThought.toLowerCase()}&rdquo;
@@ -849,7 +855,7 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
                   <h5 className="font-display text-base font-bold text-white mb-1">
                     {selectedProfile.strategies.exposicaoAtivacao.title}
                   </h5>
-                  <p className="text-xs text-[#e1eefc]/90 leading-relaxed">
+                  <p className="text-xs text-[#e1eefc] leading-relaxed">
                     {selectedProfile.strategies.exposicaoAtivacao.behaviorIndependentOfMood}
                   </p>
                 </div>
@@ -857,8 +863,8 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
                 {/* Patient's Own Written Micro-Action */}
                 <div className="p-4 bg-[#0f142a]/95 rounded-xl border border-[#ce57df]/40 space-y-3">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                    <label className="font-tech text-xs font-bold text-[#ce57df] uppercase flex items-center gap-1.5">
-                      <Zap className="w-4 h-4 text-[#ce57df]" />
+                    <label className="font-tech text-xs font-bold text-[#ec9eff] uppercase flex items-center gap-1.5">
+                      <Zap className="w-4 h-4 text-[#ec9eff]" />
                       Qual micro-passo concreto você escolhe fazer agora?
                     </label>
                     <button
@@ -889,7 +895,7 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
                         {selectedProfile.strategies.exposicaoAtivacao.microStepExamples.map((ex, i) => (
                           <div
                             key={i}
-                            className="flex items-center justify-between p-2 bg-[#0f142a]/80 rounded-lg text-[11px] text-[#e1eefc]/80 border border-[#82e5ff]/10"
+                            className="flex items-center justify-between p-2 bg-[#0f142a]/80 rounded-lg text-[11px] text-[#b4c0d9] border border-[#82e5ff]/10"
                           >
                             <span>• {ex}</span>
                             <button
@@ -906,7 +912,7 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
                   )}
 
                   <div className="flex flex-wrap items-center gap-3 pt-1 text-xs">
-                    <span className="text-[#e1eefc]/70 font-tech">Duração estimada:</span>
+                    <span className="text-[#b4c0d9] font-tech">Duração estimada:</span>
                     <div className="flex items-center gap-1.5">
                       {[3, 5, 10, 15].map((m) => (
                         <button
@@ -928,7 +934,7 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
                     </div>
                   </div>
 
-                  <p className="text-[11px] text-[#e1eefc]/70 font-tech pt-1">
+                  <p className="text-[11px] text-[#b4c0d9] font-tech pt-1">
                     Regra da viabilidade mínima: dimensione para algo tão pequeno que seja impossível falhar, mesmo sob desânimo ou medo máximo.
                   </p>
 
@@ -941,7 +947,7 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
                         disabled={!patientMicroAction.trim() && !microTimerActive}
                         className={`px-4 py-2 rounded-lg text-xs font-tech font-bold transition-all flex items-center gap-1.5 whitespace-nowrap disabled:opacity-50 ${
                           microTimerActive
-                            ? 'bg-[#b104dc] text-white hover:bg-[#ce57df] shadow-[0_0_15px_rgba(206,87,223,0.4)]'
+                            ? 'bg-[#b104dc] text-white hover:bg-[#b104dc] shadow-[0_0_15px_rgba(206,87,223,0.4)]'
                             : 'bg-[#02bbff] text-[#0f142a] hover:bg-[#82e5ff] shadow-[0_0_15px_rgba(2,187,255,0.4)]'
                         }`}
                       >
@@ -966,7 +972,7 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
                     <button
                       type="button"
                       onClick={handleSendToChoicePoint}
-                      className="px-4 py-2 text-xs font-tech font-bold text-white bg-gradient-to-r from-[#b104dc] to-[#130169] border border-[#ce57df]/50 rounded-lg hover:from-[#ce57df] transition-all flex items-center gap-1.5 whitespace-nowrap"
+                      className="px-4 py-2 text-xs font-tech font-bold text-white bg-gradient-to-r from-[#b104dc] to-[#130169] border border-[#ce57df]/50 rounded-lg hover:from-[#b104dc] transition-all flex items-center gap-1.5 whitespace-nowrap"
                     >
                       <ArrowRight className="w-3.5 h-3.5 text-[#82e5ff]" />
                       <span>Registrar no Ponto de Escolha</span>
@@ -1004,9 +1010,9 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
             type="button"
             onClick={() => setActiveModalTool('none')}
             aria-label="Fechar pop-up"
-            className="fixed top-4 right-4 z-50 flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#130169] text-[#82e5ff] hover:text-white hover:bg-[#ce57df] border border-[#02bbff]/60 shadow-[0_0_15px_rgba(2,187,255,0.4)] transition-all cursor-pointer font-tech text-xs font-bold"
+            className="fixed top-4 right-4 z-50 flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#130169] text-[#82e5ff] hover:text-white hover:bg-[#b104dc] border border-[#02bbff]/60 shadow-[0_0_15px_rgba(2,187,255,0.4)] transition-all cursor-pointer font-tech text-xs font-bold"
           >
-            <X className="w-4 h-4 text-[#ce57df]" />
+            <X className="w-4 h-4 text-[#ec9eff]" />
             <span>Fechar (ESC)</span>
           </button>
 
@@ -1025,7 +1031,7 @@ export const EmotionNavigator: React.FC<EmotionNavigatorProps> = ({ onSendToChoi
                 type="button"
                 onClick={() => setActiveModalTool('none')}
                 aria-label="Fechar janela"
-                className="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-[#130169] text-[#82e5ff] hover:text-white hover:bg-[#ce57df] border border-[#02bbff]/40 shadow-md text-xs font-tech font-bold transition-all cursor-pointer"
+                className="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-[#130169] text-[#82e5ff] hover:text-white hover:bg-[#b104dc] border border-[#02bbff]/40 shadow-md text-xs font-tech font-bold transition-all cursor-pointer"
               >
                 <X className="w-4 h-4" />
                 <span>Fechar</span>

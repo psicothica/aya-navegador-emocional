@@ -44,6 +44,7 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
 
   // Form State
   const [situation, setSituation] = useState(prefillData?.situation || '');
+  const [erroForm, setErroForm] = useState<string | null>(null);
   const [hookThoughts, setHookThoughts] = useState(prefillData?.hookThought || '');
   const [hookEmotions, setHookEmotions] = useState(prefillData?.emotion || '');
   const [hookSensations, setHookSensations] = useState('');
@@ -95,9 +96,16 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
     'Serenidade e Fogo Controlado'
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!situation.trim()) return;
+  const handleSubmit = () => {
+    if (!situation.trim()) {
+      setErroForm('Descreva a situação para salvar o registro.');
+      return;
+    }
+    if (choiceType === 'toward' && !towardAction.trim()) {
+      setErroForm('Escreva a ação simples que você escolheu executar.');
+      return;
+    }
+    setErroForm(null);
 
     const newRecord: ChoicePointRecord = {
       id: `cp-${Date.now()}`,
@@ -154,7 +162,7 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
       {/* Title & Action Strip */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-xs font-tech text-[#ce57df] mb-1">
+          <div className="flex items-center gap-2 text-xs font-tech text-[#ec9eff] mb-1">
             <span>MAPEAMENTO DO PONTO DE ESCOLHA</span>
             <span aria-hidden="true" className="text-slate-600">/</span>
             <span>A ENCRUZILHADA DO COMPORTAMENTO</span>
@@ -189,11 +197,11 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
           {/* Left Wing: Away Moves */}
           <div className="p-4 rounded-xl bg-gradient-to-br from-[#422774]/40 to-[#0f142a] border border-[#ce57df]/40 text-xs space-y-2 flex flex-col justify-between">
             <div>
-              <div className="flex items-center gap-1.5 text-[#ce57df] font-display font-bold text-sm uppercase">
-                <ArrowLeft className="w-4 h-4 text-[#ce57df]" />
+              <div className="flex items-center gap-1.5 text-[#ec9eff] font-display font-bold text-sm uppercase">
+                <ArrowLeft className="w-4 h-4 text-[#ec9eff]" />
                 <span>Movimentos de Afastamento (Away)</span>
               </div>
-              <p className="text-[#e1eefc]/80 leading-relaxed mt-2">
+              <p className="text-[#b4c0d9] leading-relaxed mt-2">
                 O piloto automático toma o controle. A mente inventa desculpas, você se esconde, cancela, enrola ou rumina. Alívio de 5 minutos, inferno de 5 semanas.
               </p>
             </div>
@@ -205,14 +213,14 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
 
           {/* Center: The Situation & Hooks */}
           <div className="p-5 rounded-xl bg-[#0f142a]/90 border border-[#82e5ff]/30 text-center space-y-3 flex flex-col items-center justify-center">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#ce57df] to-[#02bbff] text-white flex items-center justify-center font-bold text-xs shadow-[0_0_15px_rgba(206,87,223,0.5)]">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#b104dc] to-[#02bbff] text-white flex items-center justify-center font-bold text-xs shadow-[0_0_15px_rgba(206,87,223,0.5)]">
               <Split className="w-5 h-5 text-white" />
             </div>
             <div>
               <div className="font-display font-bold text-sm text-white uppercase">
                 A Situação & Os Ganchos
               </div>
-              <p className="text-[11px] text-[#e1eefc]/70 mt-1">
+              <p className="text-[11px] text-[#b4c0d9] mt-1">
                 O gatilho dispara. Sensações físicas e pensamentos puxam você como um anzol afiado.
               </p>
             </div>
@@ -228,7 +236,7 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
                 <span>Movimentos de Aproximação (Toward)</span>
                 <ArrowRight className="w-4 h-4 text-[#02bbff]" />
               </div>
-              <p className="text-[#e1eefc]/80 leading-relaxed mt-2 text-right">
+              <p className="text-[#b4c0d9] leading-relaxed mt-2 text-right">
                 Ação comprometida de coragem. Você carrega o medo, o peso ou a vergonha na mochila e executa o micro-passo que honra os seus valores.
               </p>
             </div>
@@ -242,7 +250,7 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
 
       {/* Recording Form in Cyber Glass */}
       {isFormOpen && (
-        <form onSubmit={handleSubmit} className="glass-panel-accent rounded-2xl p-6 border border-[#ce57df]/40 shadow-[0_15px_50px_rgba(0,0,0,0.5)] space-y-5">
+        <div className="glass-panel-accent rounded-2xl p-6 border border-[#ce57df]/40 shadow-[0_15px_50px_rgba(0,0,0,0.5)] space-y-5">
           <div className="flex items-center justify-between pb-3 border-b border-[#ce57df]/20">
             <h3 className="font-display text-lg font-bold text-white uppercase">
               Registrar Encruzilhada Atual
@@ -262,7 +270,7 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
                 rows={2}
                 value={situation}
                 onChange={(e) => setSituation(e.target.value)}
-                required
+                aria-required="true"
                 placeholder="Ex: Recebi uma cobrança no trabalho e o coração disparou..."
                 className="w-full text-xs p-3 bg-[#0f142a]/90 text-white border border-[#82e5ff]/20 rounded-xl focus:outline-none focus:border-[#02bbff] focus:ring-1 focus:ring-[#02bbff]"
               />
@@ -270,7 +278,7 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
 
             <div>
               <div className="flex items-center justify-between mb-1">
-                <label className="text-xs font-tech font-bold text-[#ce57df] uppercase">
+                <label className="text-xs font-tech font-bold text-[#ec9eff] uppercase">
                   2. Seus Pensamentos Reais (O que a sua mente disse?):
                 </label>
               </div>
@@ -281,7 +289,7 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
                 placeholder="Escreva com suas próprias palavras o pensamento que te pegou..."
                 className="w-full text-xs p-3 bg-[#0f142a]/90 text-white border border-[#ce57df]/25 rounded-xl focus:outline-none focus:border-[#ce57df] focus:ring-1 focus:ring-[#ce57df]"
               />
-              <span className="text-[10px] text-[#e1eefc]/50 font-tech">
+              <span className="text-[10px] text-[#b4c0d9] font-tech">
                 💡 O sistema nunca assume um pensamento como seu: registre suas palavras reais.
               </span>
             </div>
@@ -289,7 +297,7 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-tech text-[#e1eefc]/80 mb-1">
+              <label className="block text-xs font-tech text-[#b4c0d9] mb-1">
                 Emoções em ebulição:
               </label>
               <input
@@ -302,7 +310,7 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
             </div>
 
             <div>
-              <label className="block text-xs font-tech text-[#e1eefc]/80 mb-1">
+              <label className="block text-xs font-tech text-[#b4c0d9] mb-1">
                 Sensações corporais (biofísica):
               </label>
               <input
@@ -334,7 +342,7 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
                   <CheckCircle2 className="w-4 h-4 text-[#02bbff]" />
                   <span>Movimento de Aproximação (Toward)</span>
                 </div>
-                <p className="text-[11px] text-[#e1eefc]/70 mt-1">
+                <p className="text-[11px] text-[#b4c0d9] mt-1">
                   Ação com disposição guiada por valores, carregando o desconforto.
                 </p>
               </button>
@@ -348,11 +356,11 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
                     : 'bg-[#0f142a]/80 border-[#ce57df]/20 hover:border-[#ce57df]/40'
                 }`}
               >
-                <div className="flex items-center gap-1.5 text-xs font-bold text-[#ce57df]">
-                  <AlertTriangle className="w-4 h-4 text-[#b104dc]" />
+                <div className="flex items-center gap-1.5 text-xs font-bold text-[#ec9eff]">
+                  <AlertTriangle className="w-4 h-4 text-[#ec9eff]" />
                   <span>Movimento de Afastamento (Away)</span>
                 </div>
-                <p className="text-[11px] text-[#e1eefc]/70 mt-1">
+                <p className="text-[11px] text-[#b4c0d9] mt-1">
                   Cedi ao impulso de esquiva (registrado com consciência, sem autoflagelo).
                 </p>
               </button>
@@ -370,18 +378,18 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
                   type="text"
                   value={towardAction}
                   onChange={(e) => setTowardAction(e.target.value)}
-                  required={choiceType === 'toward'}
+                  aria-required={choiceType === 'toward'}
                   placeholder="Escreva a ação simples que você escolheu executar (ex: 'Lavei 3 copos na pia', 'Enviei o e-mail curto')..."
                   className="w-full text-xs px-3.5 py-2.5 bg-[#0f142a] text-white border border-[#02bbff]/40 rounded-xl focus:outline-none focus:border-[#82e5ff]"
                 />
-                <span className="text-[10px] text-[#e1eefc]/50 font-tech">
+                <span className="text-[10px] text-[#b4c0d9] font-tech">
                   💡 Defina sua própria ação viável; os exemplos servem apenas como referência didática.
                 </span>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
-                  <label className="block font-tech text-[#e1eefc]/80 mb-1">
+                  <label className="block font-tech text-[#b4c0d9] mb-1">
                     Valor escolhido (bússola):
                   </label>
                   <input
@@ -406,7 +414,7 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
                 </div>
 
                 <div>
-                  <label className="block font-tech text-[#e1eefc]/80 mb-1">
+                  <label className="block font-tech text-[#b4c0d9] mb-1">
                     Estratégia Auxiliar (Helper):
                   </label>
                   <select
@@ -421,7 +429,7 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
                 </div>
 
                 <div>
-                  <label className="block font-tech text-[#e1eefc]/80 mb-1">
+                  <label className="block font-tech text-[#b4c0d9] mb-1">
                     Duração da ação (min):
                   </label>
                   <input
@@ -444,7 +452,7 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
                   onChange={(e) => setVideoCameraVerified(e.target.checked)}
                   className="mt-0.5 text-[#02bbff] rounded focus:ring-[#02bbff]"
                 />
-                <label htmlFor="cameraCheckPsicothica" className="text-[11px] text-[#e1eefc]/80 cursor-pointer">
+                <label htmlFor="cameraCheckPsicothica" className="text-[11px] text-[#b4c0d9] cursor-pointer">
                   <strong className="text-[#82e5ff] flex items-center gap-1 font-tech uppercase">
                     <Video className="w-3.5 h-3.5 text-[#02bbff]" />
                     Teste da Câmera de Vídeo (Sem enganação):
@@ -457,7 +465,7 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
             <div className="p-4 rounded-xl bg-[#422774]/30 border border-[#ce57df]/30 space-y-3 text-xs">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-tech font-bold text-[#ce57df] mb-1 uppercase">
+                  <label className="block font-tech font-bold text-[#ec9eff] mb-1 uppercase">
                     O que rolou na mente? (Encoberto):
                   </label>
                   <input
@@ -470,7 +478,7 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
                 </div>
 
                 <div>
-                  <label className="block font-tech font-bold text-[#ce57df] mb-1 uppercase">
+                  <label className="block font-tech font-bold text-[#ec9eff] mb-1 uppercase">
                     O que seu corpo fez? (Manifesto):
                   </label>
                   <input
@@ -484,7 +492,7 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
               </div>
 
               <div>
-                <label className="block font-tech text-[#e1eefc]/80 mb-1">
+                <label className="block font-tech text-[#b4c0d9] mb-1">
                   Qual foi o custo real dessa esquiva?
                 </label>
                 <input
@@ -504,7 +512,7 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
 
           {/* Reflection */}
           <div>
-            <label className="block text-xs font-tech text-[#e1eefc]/80 mb-1">
+            <label className="block text-xs font-tech text-[#b4c0d9] mb-1">
               Reflexão ou bilhete cru para levar à sessão:
             </label>
             <textarea
@@ -517,6 +525,11 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
           </div>
 
           <div className="flex items-center justify-end gap-3 pt-2">
+            {erroForm && (
+              <p role="alert" className="mr-auto text-xs font-tech text-[#ffd6d6]">
+                {erroForm}
+              </p>
+            )}
             <button
               type="button"
               onClick={() => setIsFormOpen(false)}
@@ -525,13 +538,14 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
               Cancelar
             </button>
             <button
-              type="submit"
-              className="px-5 py-2.5 bg-gradient-to-r from-[#ce57df] to-[#130169] hover:from-[#ec9eff] text-white text-xs font-tech font-bold rounded-xl border border-[#ce57df] shadow-[0_0_15px_rgba(206,87,223,0.3)] transition-all"
+              type="button"
+              onClick={handleSubmit}
+              className="px-5 py-2.5 bg-gradient-to-r from-[#b104dc] to-[#130169] hover:brightness-110 text-white text-xs font-tech font-bold rounded-xl border border-[#ce57df] shadow-[0_0_15px_rgba(206,87,223,0.3)] transition-all"
             >
               Salvar Registro
             </button>
           </div>
-        </form>
+        </div>
       )}
 
       {/* History of Choice Points */}
@@ -570,7 +584,7 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
               type="button"
               onClick={() => setFilterType('away')}
               className={`px-3 py-1 text-xs font-tech font-semibold rounded-lg transition-colors ${
-                filterType === 'away' ? 'bg-[#ce57df] text-white' : 'text-[#ec9eff] hover:text-white'
+                filterType === 'away' ? 'bg-[#b104dc] text-white' : 'text-[#ec9eff] hover:text-white'
               }`}
             >
               Afastamento
@@ -580,7 +594,7 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
 
         {filteredRecords.length === 0 ? (
           <div className="p-8 text-center glass-panel rounded-2xl border border-[#82e5ff]/20">
-            <p className="text-xs text-[#e1eefc]/60 font-tech">Nenhuma bifurcação encontrada para este filtro.</p>
+            <p className="text-xs text-[#b4c0d9] font-tech">Nenhuma bifurcação encontrada para este filtro.</p>
           </div>
         ) : (
           <div className="space-y-3">
@@ -593,7 +607,7 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="space-y-1">
-                      <div className="flex items-center gap-2 text-xs font-tech text-[#e1eefc]/60">
+                      <div className="flex items-center gap-2 text-xs font-tech text-[#b4c0d9]">
                         <span className="text-[#82e5ff]">{rec.date} · {rec.time}</span>
                         <span aria-hidden="true" className="text-slate-600">·</span>
                         <span className={`font-bold ${isToward ? 'text-[#02bbff] glow-cyan' : 'text-[#ce57df] glow-magenta'}`}>
@@ -613,7 +627,7 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
                         className={`p-1.5 rounded-lg text-xs transition-colors ${
                           rec.sharedWithTherapist
                             ? 'text-[#82e5ff] bg-[#130169] border border-[#02bbff]/50'
-                            : 'text-[#e1eefc]/40 hover:text-white hover:bg-[#130169]/30'
+                            : 'text-[#b4c0d9] hover:text-white hover:bg-[#130169]/30'
                         }`}
                       >
                         <Share2 className="w-3.5 h-3.5" />
@@ -621,7 +635,7 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
                       <button
                         type="button"
                         onClick={() => onDeleteRecord(rec.id)}
-                        className="p-1.5 text-slate-500 hover:text-[#ce57df] hover:bg-[#422774]/30 rounded-lg transition-colors"
+                        className="p-1.5 text-[#b4c0d9] hover:text-[#ec9eff] hover:bg-[#422774]/30 rounded-lg transition-colors"
                         title="Excluir registro"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
@@ -631,14 +645,14 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
 
                   {/* Hooks block */}
                   <div className="p-2.5 bg-[#0f142a]/80 rounded-lg text-xs space-y-1 border border-[#82e5ff]/10">
-                    <span className="font-tech text-[#ce57df] text-[10px] uppercase font-bold block">Ganchos Notados:</span>
+                    <span className="font-tech text-[#ec9eff] text-[10px] uppercase font-bold block">Ganchos Notados:</span>
                     {rec.hooks.thoughts.length > 0 && (
-                      <div className="text-[#e1eefc]/80">
+                      <div className="text-[#b4c0d9]">
                         <strong className="text-white">Pensamentos:</strong> {rec.hooks.thoughts.join(', ')}
                       </div>
                     )}
                     {rec.hooks.emotions.length > 0 && (
-                      <div className="text-[#e1eefc]/80">
+                      <div className="text-[#b4c0d9]">
                         <strong className="text-white">Emoções:</strong> {rec.hooks.emotions.join(', ')}
                       </div>
                     )}
@@ -661,7 +675,7 @@ export const ChoicePointInteractive: React.FC<ChoicePointProps> = ({
                   ) : rec.awayMovement ? (
                     <div className="p-2.5 bg-[#422774]/40 rounded-lg border border-[#ce57df]/30 text-xs space-y-1">
                       <div className="text-white">
-                        <strong className="text-[#ce57df]">Afastamento:</strong> {rec.awayMovement.overt}
+                        <strong className="text-[#ec9eff]">Afastamento:</strong> {rec.awayMovement.overt}
                       </div>
                       {rec.awayMovement.cost && (
                         <div className="text-[11px] font-tech text-[#ec9eff]">

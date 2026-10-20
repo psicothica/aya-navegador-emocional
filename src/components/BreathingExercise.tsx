@@ -130,7 +130,7 @@ export const BreathingExercise: React.FC<BreathingProps> = ({ defaultMode = 'sig
           instruction: 'Mais uma puxadinha suave de ar...',
           detail: 'Completando com calma o topo dos pulmões.',
           scale: 'scale-118',
-          bgColor: 'bg-[#ce57df]/20 text-white border-[#ce57df]/60 shadow-[0_0_35px_rgba(206,87,223,0.3)]'
+          bgColor: 'bg-[#b104dc]/20 text-white border-[#ce57df]/60 shadow-[0_0_35px_rgba(206,87,223,0.3)]'
         };
       }
       if (phase === 'exhale') {
@@ -185,7 +185,7 @@ export const BreathingExercise: React.FC<BreathingProps> = ({ defaultMode = 'sig
           type="button"
           onClick={onClose}
           aria-label="Fechar respiração guiada"
-          className="absolute top-4 right-4 z-50 flex items-center justify-center w-8 h-8 rounded-full bg-[#130169] text-[#82e5ff] hover:text-white hover:bg-[#ce57df] border border-[#02bbff]/40 shadow-lg transition-all cursor-pointer"
+          className="absolute top-4 right-4 z-50 flex items-center justify-center w-8 h-8 rounded-full bg-[#130169] text-[#82e5ff] hover:text-white hover:bg-[#b104dc] border border-[#02bbff]/40 shadow-lg transition-all cursor-pointer"
         >
           <X className="w-4 h-4" />
         </button>
@@ -219,7 +219,7 @@ export const BreathingExercise: React.FC<BreathingProps> = ({ defaultMode = 'sig
             type="button"
             onClick={() => { setMode('box'); handleReset(); }}
             className={`px-3 py-1.5 text-xs font-tech font-bold rounded-lg transition-all whitespace-nowrap ${
-              mode === 'box' ? 'bg-[#ce57df] text-white' : 'text-[#ec9eff] hover:text-white'
+              mode === 'box' ? 'bg-[#b104dc] text-white' : 'text-[#ec9eff] hover:text-white'
             }`}
           >
             4 Tempos
@@ -242,7 +242,7 @@ export const BreathingExercise: React.FC<BreathingProps> = ({ defaultMode = 'sig
               currentInfo.bgColor
             } ${currentInfo.scale}`}
           >
-            <Heart className={`w-8 h-8 mb-2 text-[#ce57df] transition-all duration-1000 ${isActive ? 'opacity-100 scale-105' : 'opacity-60'}`} />
+            <Heart className={`w-8 h-8 mb-2 text-[#ec9eff] transition-all duration-1000 ${isActive ? 'opacity-100 scale-105' : 'opacity-60'}`} />
             <span className="font-display text-xs sm:text-sm font-bold tracking-wide">
               {currentInfo.instruction}
             </span>
@@ -254,7 +254,7 @@ export const BreathingExercise: React.FC<BreathingProps> = ({ defaultMode = 'sig
           </div>
         </div>
 
-        <p className="text-xs text-[#e1eefc]/70 text-center max-w-md mt-4 leading-relaxed">
+        <p className="text-xs text-[#b4c0d9] text-center max-w-md mt-4 leading-relaxed">
           {currentInfo.detail}
         </p>
       </div>
@@ -274,7 +274,7 @@ export const BreathingExercise: React.FC<BreathingProps> = ({ defaultMode = 'sig
           >
             {isActive ? (
               <>
-                <Pause className="w-4 h-4 text-[#ce57df]" />
+                <Pause className="w-4 h-4 text-[#ec9eff]" />
                 <span>Pausar Ritmo Serena</span>
               </>
             ) : (
@@ -289,7 +289,7 @@ export const BreathingExercise: React.FC<BreathingProps> = ({ defaultMode = 'sig
             type="button"
             onClick={handleReset}
             title="Reiniciar contagem"
-            className="p-2.5 text-[#82e5ff]/80 hover:text-white hover:bg-[#130169]/50 rounded-xl transition-all border border-[#82e5ff]/15"
+            className="p-2.5 text-[#82e5ff] hover:text-white hover:bg-[#130169]/50 rounded-xl transition-all border border-[#82e5ff]/15"
           >
             <RotateCcw className="w-4 h-4" />
           </button>
@@ -299,14 +299,14 @@ export const BreathingExercise: React.FC<BreathingProps> = ({ defaultMode = 'sig
             onClick={() => setSoundEnabled(!soundEnabled)}
             title={soundEnabled ? 'Desativar som discreto' : 'Ativar som discreto'}
             className={`p-2.5 rounded-xl transition-all border border-[#82e5ff]/15 ${
-              soundEnabled ? 'text-[#ce57df] bg-[#ce57df]/20 border-[#ce57df]/40' : 'text-slate-400 hover:text-white'
+              soundEnabled ? 'text-[#ec9eff] bg-[#b104dc]/20 border-[#ce57df]/40' : 'text-[#b4c0d9] hover:text-white'
             }`}
           >
             <Volume2 className="w-4 h-4" />
           </button>
         </div>
 
-        <div className="flex items-center gap-4 text-xs font-tech text-[#e1eefc]/70">
+        <div className="flex items-center gap-4 text-xs font-tech text-[#b4c0d9]">
           <div>
             <span>Ciclos: </span>
             <strong className="text-white font-mono tabular-nums">{cyclesCompleted}</strong>

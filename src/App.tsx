@@ -8,47 +8,23 @@ import { PsychoeducationLibrary } from './components/PsychoeducationLibrary';
 import { TherapistReportModal } from './components/TherapistReportModal';
 import { AboutMaterialModal } from './components/AboutMaterialModal';
 import { PBATLogEntry, ChoicePointRecord } from './types/therapy';
-import { INITIAL_PBAT_LOGS, INITIAL_CHOICE_POINTS } from './data/initialData';
-import { PsicothicaLogo } from './components/PsicothicaLogo';
+import { PsiHeader } from './psi-kit/PsiHeader';
+import { PsiFooter } from './psi-kit/PsiFooter';
+import {
+  store, PBAT_KEY, CHOICE_KEY, lerLogsPbat, lerPontosDeEscolha, exportarBackup, importarBackup,
+} from './storage';
 import { Sparkles, Terminal, Flame, Zap, ShieldAlert, Heart } from 'lucide-react';
 
-const PBAT_STORAGE_KEY = 'psicothica_pbat_logs_v1';
-const CHOICE_POINT_STORAGE_KEY = 'psicothica_choice_points_v1';
+const KIT_ASSETS = `${import.meta.env.BASE_URL}psi-kit/`;
 
 export default function App() {
   const [currentTab, setCurrentTab] = useState<string>('navegador');
   const [isReportModalOpen, setIsReportModalOpen] = useState(false);
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
 
-  // PBAT logs state - only real patient entries, never invented mock data
-  const [pbatLogs, setPbatLogs] = useState<PBATLogEntry[]>(() => {
-    try {
-      const saved = localStorage.getItem(PBAT_STORAGE_KEY);
-      if (saved) {
-        const parsed: PBATLogEntry[] = JSON.parse(saved);
-        // Clean out any legacy mock data so the patient only sees their own real data
-        return parsed.filter(item => !item.id.startsWith('pbat-00'));
-      }
-    } catch {
-      // Fallback
-    }
-    return INITIAL_PBAT_LOGS;
-  });
-
-  // Choice point records state - only real patient entries
-  const [choicePoints, setChoicePoints] = useState<ChoicePointRecord[]>(() => {
-    try {
-      const saved = localStorage.getItem(CHOICE_POINT_STORAGE_KEY);
-      if (saved) {
-        const parsed: ChoicePointRecord[] = JSON.parse(saved);
-        // Clean out any legacy mock data
-        return parsed.filter(item => !item.id.startsWith('cp-00'));
-      }
-    } catch {
-      // Fallback
-    }
-    return INITIAL_CHOICE_POINTS;
-  });
+  // Registros do paciente (só dele, nunca dados inventados). Leitura e gravação via psi-storage.
+  const [pbatLogs, setPbatLogs] = useState<PBATLogEntry[]>(lerLogsPbat);
+  const [choicePoints, setChoicePoints] = useState<ChoicePointRecord[]>(lerPontosDeEscolha);
 
   // Prefill flow between Navigator and Choice Point
   const [prefillChoicePoint, setPrefillChoicePoint] = useState<{
@@ -61,19 +37,11 @@ export default function App() {
   } | null>(null);
 
   useEffect(() => {
-    try {
-      localStorage.setItem(PBAT_STORAGE_KEY, JSON.stringify(pbatLogs));
-    } catch {
-      // Storage error
-    }
+    store.set(PBAT_KEY, pbatLogs);
   }, [pbatLogs]);
 
   useEffect(() => {
-    try {
-      localStorage.setItem(CHOICE_POINT_STORAGE_KEY, JSON.stringify(choicePoints));
-    } catch {
-      // Storage error
-    }
+    store.set(CHOICE_KEY, choicePoints);
   }, [choicePoints]);
 
   const handleAddPbatLog = (entry: PBATLogEntry) => {
@@ -113,9 +81,22 @@ export default function App() {
     setCurrentTab('ponto_escolha');
   };
 
+  const handleExportBackup = () => exportarBackup();
+
+  const handleImportBackup = async (file: File): Promise<string> => {
+    const { novos, jaExistiam } = await importarBackup(file);
+    setPbatLogs(lerLogsPbat());
+    setChoicePoints(lerPontosDeEscolha());
+    const extra = jaExistiam ? ` (${jaExistiam} já estavam aqui e foram mantidos.)` : '';
+    return `Backup importado: ${novos} registro(s) novo(s).${extra}`;
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-[#0f142a] text-[#e1eefc] bg-grid-cyber selection:bg-[#ce57df]/40 selection:text-[#82e5ff]">
-      {/* Top Header */}
+      {/* Cabeçalho Psicothica (kit): completo fora do iframe, compacto dentro */}
+      <PsiHeader appName="Navegador Emocional" assetsBase={KIT_ASSETS} />
+
+      {/* Navegação do app */}
       <Header
         currentTab={currentTab}
         onSelectTab={setCurrentTab}
@@ -168,6 +149,8 @@ export default function App() {
             onAddLog={handleAddPbatLog}
             onDeleteLog={handleDeletePbatLog}
             onOpenReportModal={() => setIsReportModalOpen(true)}
+            onExportBackup={handleExportBackup}
+            onImportBackup={handleImportBackup}
           />
         )}
 
@@ -180,53 +163,8 @@ export default function App() {
         )}
       </main>
 
-      {/* Clinical & Institutional Footer */}
-      <footer className="mt-auto border-t border-[#82e5ff]/15 bg-[#0f142a]/95 backdrop-blur-md py-6 text-xs text-[#e1eefc]/75">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-4">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <PsicothicaLogo size="sm" showWordmark={false} />
-              <div>
-                <div className="font-display font-bold text-white uppercase text-xs tracking-wider">
-                  AyA Clínica Integrada · Programa Ramificar
-                </div>
-                <div className="text-[11px] text-[#ec9eff] font-medium mt-0.5">
-                  Desenvolvido por Alanne Raquel Fragoso de Farias, psicóloga (CRP 13/9646)
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-2.5">
-              <button
-                type="button"
-                onClick={() => setIsAboutModalOpen(true)}
-                className="px-3 py-1.5 rounded-lg bg-[#130169]/50 hover:bg-[#130169] text-[#82e5ff] hover:text-white border border-[#82e5ff]/30 text-[11px] font-tech font-bold transition-all flex items-center gap-1.5"
-              >
-                <span>Sobre este material (Avisos Legais & Autoria)</span>
-              </button>
-
-              <a
-                href="tel:188"
-                className="px-3 py-1.5 rounded-lg bg-red-950/40 hover:bg-red-900/60 text-red-300 hover:text-red-100 border border-red-500/30 text-[11px] font-tech font-bold transition-all flex items-center gap-1"
-                title="Centro de Valorização da Vida - Ligação Gratuita 24h"
-              >
-                <span>SOS CVV 188 · SAMU 192</span>
-              </a>
-            </div>
-          </div>
-
-          <div className="pt-3 border-t border-[#82e5ff]/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-[11px] text-[#e1eefc]/60">
-            <p>
-              Material informativo e de apoio. Seus dados ficam salvos exclusivamente neste navegador/aparelho.
-            </p>
-            <div className="flex items-center gap-2 font-tech text-[#82e5ff]/70">
-              <span>Versão 1.0</span>
-              <span aria-hidden="true" className="text-slate-600">·</span>
-              <span>Revisado em Outubro/2026</span>
-            </div>
-          </div>
-        </div>
-      </footer>
+      {/* Rodapé Psicothica (kit) */}
+      <PsiFooter appName="Navegador Emocional" version="1.0.0" revisedAt="out/2026" />
 
       {/* Therapist Report Modal */}
       <TherapistReportModal

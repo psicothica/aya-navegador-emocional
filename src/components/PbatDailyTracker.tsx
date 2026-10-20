@@ -1,3 +1,4 @@
+import { BackupPanel } from './BackupPanel';
 import React, { useState } from 'react';
 import { 
   BarChart3, 
@@ -33,13 +34,17 @@ interface PBATTrackerProps {
   onAddLog: (entry: PBATLogEntry) => void;
   onDeleteLog?: (id: string) => void;
   onOpenReportModal: () => void;
+  onExportBackup: () => string;
+  onImportBackup: (file: File) => Promise<string>;
 }
 
 export const PbatDailyTracker: React.FC<PBATTrackerProps> = ({
   logs,
   onAddLog,
   onDeleteLog,
-  onOpenReportModal
+  onOpenReportModal,
+  onExportBackup,
+  onImportBackup
 }) => {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [showExampleGuide, setShowExampleGuide] = useState(false);
@@ -70,8 +75,7 @@ export const PbatDailyTracker: React.FC<PBATTrackerProps> = ({
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = () => {
 
     const todayDate = new Date().toISOString().split('T')[0];
     const nowTime = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
@@ -129,7 +133,7 @@ export const PbatDailyTracker: React.FC<PBATTrackerProps> = ({
           <button
             type="button"
             onClick={() => setIsFormOpen(!isFormOpen)}
-            className="px-4 py-2 bg-gradient-to-r from-[#ce57df] to-[#130169] hover:from-[#ec9eff] text-white rounded-xl text-xs font-tech font-bold border border-[#ce57df] shadow-[0_0_15px_rgba(206,87,223,0.3)] transition-all flex items-center gap-1.5 whitespace-nowrap"
+            className="px-4 py-2 bg-gradient-to-r from-[#b104dc] to-[#130169] hover:brightness-110 text-white rounded-xl text-xs font-tech font-bold border border-[#ce57df] shadow-[0_0_15px_rgba(206,87,223,0.3)] transition-all flex items-center gap-1.5 whitespace-nowrap"
           >
             <Plus className="w-4 h-4" />
             <span>{isFormOpen ? 'Fechar Check-in' : 'Novo Check-in PBAT'}</span>
@@ -147,15 +151,15 @@ export const PbatDailyTracker: React.FC<PBATTrackerProps> = ({
           <div className="text-3xl font-extrabold text-white font-mono tabular-nums glow-cyan">
             {latestEntry ? `${latestEntry.psychologicalFlexibilityScore}%` : '--'}
           </div>
-          <p className="text-[11px] font-tech text-[#e1eefc]/60 mt-1">
+          <p className="text-[11px] font-tech text-[#b4c0d9] mt-1">
             Média histórica: <strong className="text-[#82e5ff]">{averageFlexibility}%</strong>
           </p>
         </div>
 
         <div className="glass-panel rounded-2xl p-4 border border-[#ce57df]/25 shadow-xs relative overflow-hidden">
-          <div className="flex items-center justify-between text-xs font-tech text-[#ce57df] mb-1">
+          <div className="flex items-center justify-between text-xs font-tech text-[#ec9eff] mb-1">
             <span>Autonomia vs Complacência</span>
-            <Zap className="w-4 h-4 text-[#ce57df]" />
+            <Zap className="w-4 h-4 text-[#ec9eff]" />
           </div>
           <div className="text-3xl font-extrabold text-white font-mono tabular-nums glow-magenta">
             {latestEntry ? `${latestEntry.autonomyScore}%` : '--'}
@@ -173,15 +177,15 @@ export const PbatDailyTracker: React.FC<PBATTrackerProps> = ({
           <div className="text-3xl font-extrabold text-white font-mono tabular-nums glow-cyan">
             {latestEntry ? `${latestEntry.retentionScore}%` : '--'}
           </div>
-          <p className="text-[11px] font-tech text-[#e1eefc]/60 mt-1">
+          <p className="text-[11px] font-tech text-[#b4c0d9] mt-1">
             Consistência no que te faz bem
           </p>
         </div>
 
         <div className="glass-panel rounded-2xl p-4 border border-[#ce57df]/25 shadow-xs relative overflow-hidden">
-          <div className="flex items-center justify-between text-xs font-tech text-[#ce57df] mb-1">
+          <div className="flex items-center justify-between text-xs font-tech text-[#ec9eff] mb-1">
             <span>Desfusão Cognitiva</span>
-            <TrendingUp className="w-4 h-4 text-[#ce57df]" />
+            <TrendingUp className="w-4 h-4 text-[#ec9eff]" />
           </div>
           <div className="text-3xl font-extrabold text-white font-mono tabular-nums glow-magenta">
             {latestEntry ? `${latestEntry.defusionScore}%` : '--'}
@@ -194,13 +198,13 @@ export const PbatDailyTracker: React.FC<PBATTrackerProps> = ({
 
       {/* Daily PBAT Logging Form */}
       {isFormOpen && (
-        <form onSubmit={handleSubmit} className="glass-panel-accent rounded-2xl p-6 border border-[#ce57df]/40 shadow-[0_15px_50px_rgba(0,0,0,0.5)] space-y-6">
+        <div className="glass-panel-accent rounded-2xl p-6 border border-[#ce57df]/40 shadow-[0_15px_50px_rgba(0,0,0,0.5)] space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#ce57df]/20">
             <div>
               <h3 className="font-display text-lg font-bold text-white uppercase">
                 Check-in de Processos (Últimas 24 Horas)
               </h3>
-              <p className="text-xs text-[#e1eefc]/70 mt-0.5">
+              <p className="text-xs text-[#b4c0d9] mt-0.5">
                 Avalie de 0 (discordo totalmente) a 100 (concordo totalmente). Sem julgar o que você sentiu.
               </p>
             </div>
@@ -233,7 +237,7 @@ export const PbatDailyTracker: React.FC<PBATTrackerProps> = ({
             </div>
 
             <div>
-              <label className="block text-xs font-tech text-[#ce57df] mb-1 uppercase font-bold">
+              <label className="block text-xs font-tech text-[#ec9eff] mb-1 uppercase font-bold">
                 Necessidade prioritária (opcional, suas palavras):
               </label>
               <input
@@ -266,7 +270,7 @@ export const PbatDailyTracker: React.FC<PBATTrackerProps> = ({
                           </span>
                         )}
                       </div>
-                      <p className="text-xs text-[#e1eefc]/90 font-medium">
+                      <p className="text-xs text-[#e1eefc] font-medium">
                         &ldquo;{q.label}&rdquo;
                       </p>
                     </div>
@@ -288,7 +292,7 @@ export const PbatDailyTracker: React.FC<PBATTrackerProps> = ({
                     className="w-full h-1.5 bg-[#130169] rounded-lg appearance-none cursor-pointer accent-[#ce57df]"
                   />
 
-                  <div className="flex justify-between text-[10px] font-tech text-[#e1eefc]/50">
+                  <div className="flex justify-between text-[10px] font-tech text-[#b4c0d9]">
                     <span className="max-w-[45%]">{q.lowPrompt}</span>
                     <span className="max-w-[45%] text-right">{q.highPrompt}</span>
                   </div>
@@ -317,7 +321,7 @@ export const PbatDailyTracker: React.FC<PBATTrackerProps> = ({
             </div>
 
             <div>
-              <label className="block text-xs font-tech text-[#ce57df] mb-1 uppercase font-bold">
+              <label className="block text-xs font-tech text-[#ec9eff] mb-1 uppercase font-bold">
                 Notas cruas para a sessão (suas palavras):
               </label>
               <input
@@ -339,14 +343,18 @@ export const PbatDailyTracker: React.FC<PBATTrackerProps> = ({
               Cancelar
             </button>
             <button
-              type="submit"
+              type="button"
+              onClick={handleSubmit}
               className="px-5 py-2.5 bg-gradient-to-r from-[#b104dc] to-[#130169] text-white text-xs font-tech font-bold rounded-xl border border-[#ce57df] shadow-[0_0_15px_rgba(206,87,223,0.3)] transition-all cursor-pointer"
             >
               Salvar Meu Registro PBAT
             </button>
           </div>
-        </form>
+        </div>
       )}
+
+      {/* Backup em arquivo (exportar / importar JSON) */}
+      <BackupPanel onExport={onExportBackup} onImport={onImportBackup} />
 
       {/* When no logs exist: Clean, authentic empty state */}
       {logs.length === 0 ? (
@@ -359,7 +367,7 @@ export const PbatDailyTracker: React.FC<PBATTrackerProps> = ({
             <h3 className="font-display text-xl sm:text-2xl font-bold text-white uppercase tracking-tight">
               Diário de Processos <span className="text-[#ce57df] glow-magenta">100% Pessoal</span>
             </h3>
-            <p className="text-xs sm:text-sm text-[#e1eefc]/75 leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#b4c0d9] leading-relaxed">
               Aqui não há dados simulados nem respostas pré-fabricadas. O diário PBAT avalia as 6 dimensões da sua experiência real ao longo dos dias, gerando um mapa idionômico de progresso para a sua psicoterapia.
             </p>
           </div>
@@ -368,7 +376,7 @@ export const PbatDailyTracker: React.FC<PBATTrackerProps> = ({
             <button
               type="button"
               onClick={() => setIsFormOpen(true)}
-              className="px-5 py-2.5 bg-gradient-to-r from-[#ce57df] to-[#130169] hover:from-[#ec9eff] text-white text-xs font-tech font-bold rounded-xl border border-[#ce57df] shadow-[0_0_18px_rgba(206,87,223,0.4)] transition-all flex items-center gap-2 cursor-pointer"
+              className="px-5 py-2.5 bg-gradient-to-r from-[#b104dc] to-[#130169] hover:brightness-110 text-white text-xs font-tech font-bold rounded-xl border border-[#ce57df] shadow-[0_0_18px_rgba(206,87,223,0.4)] transition-all flex items-center gap-2 cursor-pointer"
             >
               <Plus className="w-4 h-4" />
               <span>Fazer Primeiro Check-in PBAT</span>
@@ -396,7 +404,7 @@ export const PbatDailyTracker: React.FC<PBATTrackerProps> = ({
                   Apenas para consulta
                 </span>
               </div>
-              <p className="text-xs text-[#e1eefc]/70">
+              <p className="text-xs text-[#b4c0d9]">
                 O PBAT mede como você se relaciona com suas emoções e pensamentos através de 8 perguntas calibradas. Quando você registrar seus dias, os gráficos calcularão:
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
@@ -405,7 +413,7 @@ export const PbatDailyTracker: React.FC<PBATTrackerProps> = ({
                   Capacidade de sentir o desconforto e continuar agindo em direção ao que importa.
                 </div>
                 <div className="p-3 bg-[#130169]/30 rounded-xl border border-[#ce57df]/20">
-                  <strong className="text-[#ce57df] font-tech uppercase block text-[11px]">Item #9 (Autonomia):</strong>
+                  <strong className="text-[#ec9eff] font-tech uppercase block text-[11px]">Item #9 (Autonomia):</strong>
                   Se você agiu por escolha própria ou se cedeu apenas para agradar/evitar atritos.
                 </div>
               </div>
@@ -471,18 +479,18 @@ export const PbatDailyTracker: React.FC<PBATTrackerProps> = ({
                       </span>
                     </div>
                     <div className="flex items-center gap-3 font-tech text-[11px]">
-                      <span className="text-[#e1eefc]/70">
+                      <span className="text-[#b4c0d9]">
                         Flexibilidade: <strong className="text-[#82e5ff]">{entry.psychologicalFlexibilityScore}%</strong>
                       </span>
-                      <span className="text-[#e1eefc]/70">
-                        Autonomia: <strong className="text-[#ce57df]">{entry.autonomyScore}%</strong>
+                      <span className="text-[#b4c0d9]">
+                        Autonomia: <strong className="text-[#ec9eff]">{entry.autonomyScore}%</strong>
                       </span>
                       {onDeleteLog && (
                         <button
                           type="button"
                           onClick={() => onDeleteLog(entry.id)}
                           title="Excluir este registro"
-                          className="text-slate-500 hover:text-red-400 p-1 rounded-lg hover:bg-[#130169] transition-colors"
+                          className="text-[#b4c0d9] hover:text-red-400 p-1 rounded-lg hover:bg-[#130169] transition-colors"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>
@@ -497,7 +505,7 @@ export const PbatDailyTracker: React.FC<PBATTrackerProps> = ({
                   )}
 
                   {entry.microActionDone && (
-                    <div className="text-[#e1eefc]/90 bg-[#130169]/40 p-2.5 rounded-lg border border-[#02bbff]/20">
+                    <div className="text-[#e1eefc] bg-[#130169]/40 p-2.5 rounded-lg border border-[#02bbff]/20">
                       <strong className="text-[#82e5ff] font-tech uppercase text-[10px] block mb-0.5">Ação Realizada:</strong> {entry.microActionDone}
                     </div>
                   )}
