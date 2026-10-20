@@ -51,3 +51,7 @@ O app é exibido com `sandbox="allow-scripts allow-same-origin allow-downloads a
 - downloads (backup) e `window.print()` (relatório) funcionam com `allow-downloads` e `allow-modals`.
 
 Movimento reduzido: com `prefers-reduced-motion`, animações e transições próprias do app ficam desligadas.
+
+## Direitos autorais
+
+Copyright (c) 2026 Alanne Raquel Fragoso de Farias. Todos os direitos reservados. Nenhuma parte deste software ou do seu conteúdo pode ser copiada, modificada, distribuída ou usada para fins comerciais sem autorização prévia e por escrito da autora.
